@@ -134,17 +134,20 @@ That's weird, configuration files from a previous install of EFL/E"
 
     read -t 10 -p "Do you want to remove these files? [Y/n] " answer
     case $answer in
-        [yY] ) rm -rf $HOME/.e/ &>/dev/null
-               rm -rf $HOME/.elementary/ &>/dev/null
-               rm -rf $HOME/.cache/efreet/ &>/dev/null
-               rm -rf $HOME/.cache/evas* &>/dev/null
+      [yY] ) 
+        rm -rf $HOME/.e/ &>/dev/null
+        rm -rf $HOME/.elementary/ &>/dev/null
+        rm -rf $HOME/.cache/efreet/ &>/dev/null
+        rm -rf $HOME/.cache/evas* &>/dev/null
         ;;
-        [nN] ) printf "\n%s\n\n" "(do not delete the config folders... OK)"
+      [nN] ) 
+        printf "\n%s\n\n" "(do not delete the config folders... OK)"
         ;;
-        *    ) rm -rf $HOME/.e/ &>/dev/null
-               rm -rf $HOME/.elementary/ &>/dev/null
-               rm -rf $HOME/.cache/efreet/ &>/dev/null
-               rm -rf $HOME/.cache/evas* &>/dev/null
+      *    )
+        rm -rf $HOME/.e/ &>/dev/null
+        rm -rf $HOME/.elementary/ &>/dev/null
+        rm -rf $HOME/.cache/efreet/ &>/dev/null
+        rm -rf $HOME/.cache/evas* &>/dev/null
         ;;
     esac
 fi
@@ -300,12 +303,15 @@ if [ "$(pidof dropbox)" ]; then
     beep_question; read -t 10 -p "
 Do you want to back up your E22 settings to your Dropbox now? [y/N] " answer
     case $answer in
-        [yY] ) e_bak; echo
+      [yY] ) 
+        e_bak; echo
         ;;
-        [nN] ) printf "%s\n\n" "
+      [nN] ) 
+        printf "%s\n\n" "
 (do not back up my user settings and themes folders... OK)"
         ;;
-        *    ) echo; printf "%s\n\n" "
+      *    ) 
+        echo; printf "%s\n\n" "
 (do not back up my user settings and themes folders... OK)"
         ;;
     esac
@@ -321,13 +327,16 @@ do
 
     #~ (Configure)
         case $I in
-            efl) $GEN --enable-cxx-bindings --enable-harfbuzz \
+          efl) 
+            $GEN --enable-cxx-bindings --enable-harfbuzz \
             --enable-image-loader-webp --enable-multisense --enable-systemd \
             --enable-xine --enable-xinput22 
             ;;
-            enlightenment) $GEN --enable-mount-eeze --disable-wl-desktop-shell
+          enlightenment) 
+            $GEN --enable-mount-eeze --disable-wl-desktop-shell
             ;;
-            *) $GEN
+          *) 
+            $GEN
             ;;
         esac
 
@@ -347,9 +356,11 @@ do
     #~ (Install)
         $TITLE "Processing ${I^} . . ."
         case $I in
-            efl) beep_attention; $SMIL
+          efl) 
+            beep_attention; $SMIL
             ;;
-            *) $SMIL
+          *) 
+            $SMIL
             ;;
         esac
 
@@ -368,16 +379,20 @@ do
 
     #~ (Configure)
         case $I in
-            efl) $GEN --enable-cxx-bindings --enable-image-loader-webp \
+          efl) 
+            $GEN --enable-cxx-bindings --enable-image-loader-webp \
             --enable-multisense --enable-systemd --enable-xine \
             --enable-xinput22 --disable-harfbuzz --disable-nls
             ;;
-            enlightenment) $GEN --enable-mount-eeze --disable-nls \
+          enlightenment) 
+            $GEN --enable-mount-eeze --disable-nls \
             --disable-wl-desktop-shell
             ;;
-            terminology) $GEN --disable-nls
+          terminology) 
+            $GEN --disable-nls
             ;;
-            *) $GEN
+          *) 
+            $GEN
             ;;
         esac
 
@@ -397,9 +412,11 @@ do
     #~ (Install)
         $TITLE "Processing ${I^} . . ."
         case $I in
-            efl) beep_attention; $SMIL
+          efl) 
+            beep_attention; $SMIL
             ;;
-            *) $SMIL
+          *) 
+            $SMIL
             ;;
         esac
 
@@ -423,13 +440,16 @@ do
     echo
     #~ (Configure)
         case $I in
-            efl) $GEN --enable-cxx-bindings --enable-harfbuzz \
+          efl) 
+            $GEN --enable-cxx-bindings --enable-harfbuzz \
             --enable-image-loader-webp --enable-multisense --enable-systemd \
             --enable-xine --enable-xinput22 
             ;;
-            enlightenment) $GEN --enable-mount-eeze --disable-wl-desktop-shell
+          enlightenment) 
+            $GEN --enable-mount-eeze --disable-wl-desktop-shell
             ;;
-            *) $GEN
+          *)
+            $GEN
             ;;
         esac
     #~ (Build)
@@ -464,16 +484,20 @@ do
     echo
     #~ (Configure)
         case $I in
-            efl) $GEN --enable-cxx-bindings --enable-image-loader-webp \
+          efl) 
+            $GEN --enable-cxx-bindings --enable-image-loader-webp \
             --enable-multisense --enable-systemd --enable-xine \
             --enable-xinput22 --disable-harfbuzz --disable-nls 
             ;;
-            enlightenment) $GEN --enable-mount-eeze --disable-nls \
+          enlightenment) 
+            $GEN --enable-mount-eeze --disable-nls \
             --disable-wl-desktop-shell
             ;;
-            terminology) $GEN --disable-nls
+          terminology) 
+            $GEN --disable-nls
             ;;
-            *) $GEN
+          *) 
+            $GEN
             ;;
         esac
     #~ (Build)
@@ -509,14 +533,17 @@ Rebuilding $I with optimizations and nls support enabled..."
     git pull
     echo
         case $I in
-            efl) $GEN --enable-cxx-bindings --enable-harfbuzz \
+          efl)
+            $GEN --enable-cxx-bindings --enable-harfbuzz \
             --enable-image-loader-webp --enable-multisense --enable-systemd \
             --enable-xine --enable-xinput22 --with-profile=release
             ;;
-            enlightenment) $GEN --enable-mount-eeze --disable-wl-desktop-shell \
+          enlightenment) 
+            $GEN --enable-mount-eeze --disable-wl-desktop-shell \
             --with-profile=FAST_PC
             ;;
-            *) $GEN
+          *) 
+            $GEN
             ;;
         esac
     echo
@@ -556,20 +583,24 @@ do
     git reset --hard; echo
     git pull
     echo
-        case $I in
-            efl) $GEN --enable-cxx-bindings --enable-image-loader-webp \
-            --enable-multisense --enable-systemd --enable-xine \
-            --enable-xinput22 --disable-harfbuzz --disable-nls \
-            --with-profile=release
-            ;;
-            enlightenment) $GEN --enable-mount-eeze --disable-nls \
-            --disable-wl-desktop-shell --with-profile=FAST_PC
-            ;;
-            terminology) $GEN --disable-nls
-            ;;
-            *) $GEN
-            ;;
-        esac
+      case $I in
+        efl) 
+          $GEN --enable-cxx-bindings --enable-image-loader-webp \
+          --enable-multisense --enable-systemd --enable-xine \
+          --enable-xinput22 --disable-harfbuzz --disable-nls \
+          --with-profile=release
+          ;;
+        enlightenment)
+          $GEN --enable-mount-eeze --disable-nls \
+          --disable-wl-desktop-shell --with-profile=FAST_PC
+          ;;
+        terminology) 
+          $GEN --disable-nls
+          ;;
+        *) 
+          $GEN
+          ;;
+      esac
     echo
     $TITLE "Processing ${I^} . . ."
     make
@@ -610,17 +641,21 @@ do
     git pull
     echo
         case $I in
-            efl) $GEN --enable-cxx-bindings --enable-image-loader-webp \
+          efl) 
+            $GEN --enable-cxx-bindings --enable-image-loader-webp \
             --enable-multisense --enable-systemd --enable-xine \
             --enable-xinput22 --enable-valgrind --disable-harfbuzz \
             --disable-nls
             ;;
-            enlightenment) $GEN --enable-mount-eeze --disable-nls \
+          enlightenment)
+            $GEN --enable-mount-eeze --disable-nls \
             --disable-wl-desktop-shell
             ;;
-            terminology) $GEN --disable-nls
+          terminology)
+            $GEN --disable-nls
             ;;
-            *) $GEN
+          *)
+            $GEN
             ;;
         esac
     echo
@@ -641,9 +676,11 @@ done
 
 remove_prgm () {
 case $I in
-    efl) printf "\n$BLD%s $OFF%s\n\n" "Cleaning $I... Please wait."
+  efl) 
+    printf "\n$BLD%s $OFF%s\n\n" "Cleaning $I... Please wait."
     ;;
-    *)   printf "\n$BLD%s $OFF%s\n\n" "Cleaning $I..."
+  *)   
+    printf "\n$BLD%s $OFF%s\n\n" "Cleaning $I..."
     ;;
 esac
 
@@ -839,11 +876,14 @@ echo; beep_question
 read -t 10 -p "Build internationalization (i18n) support \
 in Enlightenment? [y/N] " answer
 case $answer in
-    [yY] ) build_std; echo
+  [yY] )
+    build_std; echo
     ;;
-    [nN] ) build_no_nls; echo
+  [nN] ) 
+    build_no_nls; echo
     ;;
-    *    ) echo; build_no_nls; echo
+  *    ) 
+    echo; build_no_nls; echo
     ;;
 esac
 
@@ -898,11 +938,14 @@ else
     read -t 10 -p "Build internationalization (i18n) support \
 in Enlightenment? [y/N] " answer
     case $answer in
-        [yY] ) rebuild_std; echo
+      [yY] )
+        rebuild_std; echo
         ;;
-        [nN] ) rebuild_no_nls; echo
+      [nN] ) 
+        rebuild_no_nls; echo
         ;;
-        *    ) echo; rebuild_no_nls; echo
+      *    ) 
+        echo; rebuild_no_nls; echo
         ;;
     esac
 fi
@@ -992,11 +1035,14 @@ echo; beep_question; echo
 if [ -d $HOME/.ccache/ ]; then
     read -t 10 -p "Remove hidden ccache folder (compiler cache)? [y/N] " answer
     case $answer in
-        [yY] ) rm -rf $HOME/.ccache/
+      [yY] ) 
+        rm -rf $HOME/.ccache/
         ;;
-        [nN] ) printf "\n%s\n\n" "(do not delete the ccache folder... OK)"
+      [nN] ) 
+        printf "\n%s\n\n" "(do not delete the ccache folder... OK)"
         ;;
-        *    ) echo; printf "\n%s\n\n" "(do not delete the ccache folder... OK)"
+      *    )
+        echo; printf "\n%s\n\n" "(do not delete the ccache folder... OK)"
         ;;
     esac
 fi
@@ -1077,11 +1123,14 @@ else
     read -t 10 -p "Build internationalization (i18n) support \
 in Enlightenment? [y/N] " answer
     case $answer in
-        [yY] ) rebuild_optim; echo
+      [yY] ) 
+        rebuild_optim; echo
         ;;
-        [nN] ) rebuild_optim_no_nls; echo
+      [nN] ) 
+        rebuild_optim_no_nls; echo
         ;;
-        *    ) echo; rebuild_optim_no_nls; echo
+      *    ) 
+        echo; rebuild_optim_no_nls; echo
         ;;
     esac
 fi
