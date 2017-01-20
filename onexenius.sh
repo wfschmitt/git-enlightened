@@ -39,6 +39,19 @@
 #~ export LC_ALL=C
 #~ set -vx
 
+PREFIX=/usr/local
+E22="$HOME/Enlightenment22"
+TITLE="wmctrl -r :ACTIVE: -N"
+GEN="./autogen.sh --prefix=$PREFIX"
+SMIL="sudo make install"
+RELEASE=$(lsb_release -sc)
+DISTRIBUTOR=$(lsb_release -i | cut -f2)
+CODE=${LANG:0:2}
+GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
+VER_ONLINE=$(wget --quiet -S -O - $GHUB/13 |& sed '$!d')
+CURVERNUM=13.5
+
+#~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
 BRN="\e[0;31m"  #~ (Brown text)
 BDR="\e[1;31m"  #~ (Bold red text)
@@ -47,6 +60,7 @@ BDG="\e[1;32m"  #~ (Bold green text)
 BDY="\e[1;33m"  #~ (Bold yellow text)
 OFF="\e[0m"     #~ (Turn off ansi colors)
 
+#~ (Compiler and linker flags)
 export CPPFLAGS=-I/usr/local/include
 export LDFLAGS=-L/usr/local/lib
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
@@ -59,16 +73,6 @@ export CCACHE_COMPRESS=1
 NCPU="$(getconf _NPROCESSORS_ONLN)"
 NJOBS="$((NCPU*2))"
 export MAKE="make -j $NJOBS"
-
-PREFIX=/usr/local
-E22="$HOME/Enlightenment22"
-TITLE="wmctrl -r :ACTIVE: -N"
-GEN="./autogen.sh --prefix=$PREFIX"
-SMIL="sudo make install"
-RELEASE=$(lsb_release -sc)
-DISTRIBUTOR=$(lsb_release -i | cut -f2)
-CODE=${LANG:0:2}
-CURVERNUM=13.4
 
 #~ (Folder names lookup)
 DOCUDIR=$(test -f ${XDG_CONFIG_HOME:-~/.config}/user-dirs.dirs && \
@@ -226,6 +230,7 @@ if [ ! -f $DOCUDIR/installed.txt ]; then
     sed -i '/linux-tools*/d'   $DOCUDIR/installed.txt
 fi
 
+#~ (locale-dependent sorting)
 if [ $CODE == en ]; then
     sudo apt-get install --yes $DEPS_EN
         if [ $? -ne 0 ]; then
@@ -1143,8 +1148,8 @@ fi
 main () {
 trap '{ printf "\n$BDR%s $OFF%s\n\n" " KEYBOARD INTERRUPT."; exit 130; }' INT
 
-printf "\n%s\n" "You are running ONEXENIUS v$CURVERNUM, always make sure"
-printf "%s\n" "you have the latest available version of this script."
+printf "\n%s\n" "$VER_ONLINE"
+printf "%s\n" "(currently running v$CURVERNUM)"
 
 sleep 3
 
