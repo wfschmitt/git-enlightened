@@ -1,2 +1,2 @@
 # git-enlightened
-Enlightenment Git build script for Ubuntu
+Enlightenment GIT build script for Ubuntu
