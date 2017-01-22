@@ -903,8 +903,7 @@ update_go () {
 clear; printf "\n$BLD%s $OFF%s\n\n" "Proceeding to update Enlightenment 22..."
 sleep 1
 
-printf "\n$BLD%s $OFF%s\n\n" "
-Satisfying dependencies under Ubuntu ${RELEASE^}..."
+printf "\n$BLD%s $OFF%s\n\n" "Satisfying dependencies under Ubuntu ${RELEASE^}..."
 if [ $CODE == en ]; then
     sudo apt-get install --yes $DEPS_EN
     sleep 1
@@ -1080,8 +1079,7 @@ optim_go () {
 clear; printf "\n$BLD%s $OFF%s\n\n" "Proceeding to update Enlightenment 22..."
 sleep 1
 
-printf "\n$BLD%s $OFF%s\n\n" "
-Satisfying dependencies under Ubuntu ${RELEASE^}..."
+printf "\n$BLD%s $OFF%s\n\n" "Satisfying dependencies under Ubuntu ${RELEASE^}..."
 if [ $CODE == en ]; then
     sudo apt-get install --yes $DEPS_EN
     sleep 1
