@@ -165,11 +165,9 @@ if [ $INPUT -lt 1 ]; then
     printf "$BDG%s %s\n\n" "2. Update my E22 installation." #~ (Standard)
     printf "$BRN%s %s\n\n" "3. Uninstall E22 programs only."
     printf "$BRN%s $OFF%s\n" "4. Uninstall E22 programs AND binary dependencies."
-    printf "$BDY%s %s\n" "
-5. Update and rebuild E22 for debugging" #~ (Slower——Not suitable for daily use)
+    printf "$BDY%s %s\n" "5. Update and rebuild E22 for debugging" #~ (Slower——Not suitable for daily use)
     printf "$BDY%s %s\n" "   (make sure default E theme is applied)."
-    printf "$BDY%s %s\n" "
-6. Update and rebuild E22 with optimizations enabled" #~ (Run faster)
+    printf "$BDY%s %s\n" "6. Update and rebuild E22 with optimizations enabled" #~ (Run faster)
     printf "$BDY%s $OFF%s\n\n" "   (tarball generation: answer yes to i18n support)."
     sleep 1
     printf "$BLD%s $OFF%s\n\n" "—  Or press Ctrl-C to quit."
@@ -895,10 +893,8 @@ sudo updatedb; beep_ok
 
 $TITLE "Installation Complete."
 printf "\n\n$BDY%s %s" "Enlightenment first time wizard tips:"
-printf "\n$BDY%s %s" "
-Update checking——You can disable this feature because it serves no useful purpose."
-printf "\n$BDY%s $OFF%s\n\n\n" "
-Network management support——Do not install Connman!"
+printf "\n$BDY%s %s" "Update checking——You can disable this feature because it serves no useful purpose."
+printf "\n$BDY%s $OFF%s\n\n\n" "Network management support——Do not install Connman!"
 echo; cowsay "No Reboot Required... That's All Folks!"; echo
 #~ (Then log out and select Enlightenment on the login screen)
 }
@@ -1070,8 +1066,7 @@ rebuild_for_debug
 wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz
 printf "\n$BDY%s %s\n" "Launching Enlightenment into a Xephyr window..."
 printf "$BDY%s $OFF%s" "You may experience very slow performance in debug mode!"
-printf "\n$BDY%s %s" "
-Log out of Enlightenment and close the Xephyr window when you are done."
+printf "\n$BDY%s %s" "Log out of Enlightenment and close the Xephyr window when you are done."
 printf "\n$BDY%s $OFF%s\n" "Then enter q to end the debugging session (quit gdb)."
 sleep 6
 
