@@ -121,7 +121,6 @@ TRIM=${DEPS:48}
 CLONEFL="git clone git://git.enlightenment.org/core/efl.git"
 CLONE22="git clone git://git.enlightenment.org/core/enlightenment.git"
 CLONETY="git clone git://git.enlightenment.org/apps/terminology.git"
-
 EPROG="efl enlightenment terminology"
 
 #~#~# FUNCTIONS
@@ -166,15 +165,13 @@ if [ $INPUT -lt 1 ]; then
     printf "\n$BDG%s $OFF%s\n\n" "1. Install Enlightenment 22." #~ (Standard)
     printf "$BDG%s %s\n\n" "2. Update my E22 installation." #~ (Standard)
     printf "$BRN%s %s\n\n" "3. Uninstall E22 programs only."
-    printf "$BRN%s $OFF%s\n" "4. Uninstall E22 programs AND \
-binary dependencies."
+    printf "$BRN%s $OFF%s\n" "4. Uninstall E22 programs AND binary dependencies."
     printf "$BDY%s %s\n" "
 5. Update and rebuild E22 for debugging" #~ (Slower——Not suitable for daily use)
     printf "$BDY%s %s\n" "   (make sure default E theme is applied)."
     printf "$BDY%s %s\n" "
 6. Update and rebuild E22 with optimizations enabled" #~ (Run faster)
-    printf "$BDY%s $OFF%s\n\n" "   (tarball generation: \
-answer yes to i18n support)."
+    printf "$BDY%s $OFF%s\n\n" "   (tarball generation: answer yes to i18n support)."
     sleep 1
     printf "$BLD%s $OFF%s\n\n" "—  Or press Ctrl-C to quit."
     read INPUT
@@ -300,19 +297,16 @@ sleep 2
 dpbx_detect () {
 if [ "$(pidof dropbox)" ]; then
     printf "$BDG%s $OFF%s\n" "DROPBOX is running on this computer..."
-    beep_question; read -t 10 -p "
-Do you want to back up your E22 settings to your Dropbox now? [y/N] " answer
+    beep_question; read -t 10 -p "Do you want to back up your E22 settings to your Dropbox now? [y/N] " answer
     case $answer in
       [yY] )
         e_bak; echo
         ;;
       [nN] )
-        printf "%s\n\n" "
-(do not back up my user settings and themes folders... OK)"
+        printf "%s\n\n" "(do not back up my user settings and themes folders... OK)"
         ;;
       *    )
-        echo; printf "%s\n\n" "
-(do not back up my user settings and themes folders... OK)"
+        echo; printf "%s\n\n" "(do not back up my user settings and themes folders... OK)"
         ;;
     esac
 fi
@@ -526,8 +520,7 @@ for I in $EPROG
 do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
-    printf "\n$BDY%s $OFF%s\n\n" "
-Rebuilding $I with optimizations and nls support enabled..."
+    printf "\n$BDY%s $OFF%s\n\n" "Rebuilding $I with optimizations and nls support enabled..."
     make distclean &>/dev/null
     git reset --hard; echo
     git pull
@@ -838,7 +831,7 @@ done
 
 cd $HOME
 
-find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null| while read -r I
+find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I
 do
     if [ -f "$I/terminology.mo" ]; then
         cd "$I" && sudo rm -rf terminology*
@@ -873,8 +866,7 @@ ls_dir
 $TITLE "Processing Enlightenment Programs . . ."
 echo; beep_question
 
-read -t 10 -p "Build internationalization (i18n) support \
-in Enlightenment? [y/N] " answer
+read -t 10 -p "Build internationalization (i18n) support in Enlightenment? [y/N] " answer
 case $answer in
   [yY] )
     build_std; echo
@@ -906,8 +898,7 @@ sudo updatedb; beep_ok
 $TITLE "Installation Complete."
 printf "\n\n$BDY%s %s" "Enlightenment first time wizard tips:"
 printf "\n$BDY%s %s" "
-Update checking——You can disable this feature because it serves no \
-useful purpose."
+Update checking——You can disable this feature because it serves no useful purpose."
 printf "\n$BDY%s $OFF%s\n\n\n" "
 Network management support——Do not install Connman!"
 echo; cowsay "No Reboot Required... That's All Folks!"; echo
@@ -935,8 +926,7 @@ if [ -f /usr/local/share/locale/$CODE/LC_MESSAGES/enlightenment.mo ]; then
     rebuild_std; echo
 else
     echo; beep_question   
-    read -t 10 -p "Build internationalization (i18n) support \
-in Enlightenment? [y/N] " answer
+    read -t 10 -p "Build internationalization (i18n) support in Enlightenment? [y/N] " answer
     case $answer in
       [yY] )
         rebuild_std; echo
@@ -1086,16 +1076,14 @@ wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz
 printf "\n$BDY%s %s\n" "Launching Enlightenment into a Xephyr window..."
 printf "$BDY%s $OFF%s" "You may experience very slow performance in debug mode!"
 printf "\n$BDY%s %s" "
-Log out of Enlightenment and close the Xephyr window when you're done."
-printf "\n$BDY%s $OFF%s\n" "
-Then enter q to end the debugging session (quit gdb)."
+Log out of Enlightenment and close the Xephyr window when you are done."
+printf "\n$BDY%s $OFF%s\n" "Then enter q to end the debugging session (quit gdb)."
 sleep 6
 
 ##~ (See ./xdebug.sh --help for options)
 cd $HOME/Enlightenment22/enlightenment/ && ./xdebug.sh
 printf "\n$BDY%s %s\n" "Please check /var/crash/ for core dumps"
-printf "\n$BDY%s $OFF%s\n\n" "and look for a file called \
-.e-crashdump.txt in your home folder."
+printf "\n$BDY%s $OFF%s\n\n" "and look for a file called .e-crashdump.txt in your home folder."
 }
 
 optim_go () {
@@ -1120,8 +1108,7 @@ if [ -f /usr/local/share/locale/$CODE/LC_MESSAGES/enlightenment.mo ]; then
 else
     echo; beep_question  
     ##~  (BUILD TEST: answer yes!)
-    read -t 10 -p "Build internationalization (i18n) support \
-in Enlightenment? [y/N] " answer
+    read -t 10 -p "Build internationalization (i18n) support in Enlightenment? [y/N] " answer
     case $answer in
       [yY] )
         rebuild_optim; echo
@@ -1181,8 +1168,7 @@ if [ $? == 0 ]; then
 fi
 
 if [ "$(pidof enlightenment)" ]; then
-    printf "\n$BDR%s $OFF%s\n\n" "
- PLEASE LOG IN TO ${DISTRIBUTOR^^} TO EXECUTE THIS SCRIPT."
+    printf "\n$BDR%s $OFF%s\n\n" " PLEASE LOG IN TO ${DISTRIBUTOR^^} TO EXECUTE THIS SCRIPT."
     exit 1
 fi
 
