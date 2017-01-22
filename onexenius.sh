@@ -127,8 +127,7 @@ EPROG="efl enlightenment terminology"
 
 leftover_detect () {
 if [ -d $HOME/.e/ -o -d $HOME/.elementary/ ]; then
-    printf "\n$BDY%s %s\n" "
-That's weird, configuration files from a previous install of EFL/E"
+    printf "\n$BDY%s %s\n" "That's weird, configuration files from a previous install of EFL/E"
     printf "$BDY%s $OFF%s\n\n" "are still present in your home folder..."
 
     read -t 10 -p "Do you want to remove these files? [Y/n] " answer
@@ -269,8 +268,7 @@ if [ $COUNT == 3 ]; then
     printf "$BDG%s $OFF%s\n\n" "All programs have been downloaded successfully."
     sleep 2
 else
-    printf "\n$BDY%s $OFF%s\n\n" "
- WARNING: ONLY $COUNT OF 3 PROGRAMS HAVE BEEN DOWNLOADED."
+    printf "\n$BDY%s $OFF%s\n\n" " WARNING: ONLY $COUNT OF 3 PROGRAMS HAVE BEEN DOWNLOADED."
     sleep 6
 fi
 }
@@ -986,8 +984,7 @@ echo; cowsay -d "That's All Folks!"; echo
 uninstall_all () {
 clear; echo; read -t 5 -p "Wait 5s or hit Ctrl-C to abort..."
 
-printf "\n\n$BLD%s $OFF%s\n\n" "
-Complete uninstallation of E22 and deps, this may take some time."
+printf "\n\n$BLD%s $OFF%s\n\n" "Complete uninstallation of E22 and deps, this may take some time."
 
 for I in $EPROG
 do
@@ -1040,8 +1037,7 @@ fi
 echo
 
 if [ "$(pidof dropbox)" ]; then
-    printf "%s\n\n" "
-You might also want to delete some folders (E backups) in your Dropbox..."
+    printf "%s\n\n" "You might also want to delete some folders (E backups) in your Dropbox..."
 fi
 
 sudo updatedb; beep_ok
@@ -1049,8 +1045,7 @@ printf "\n$BDG%s $OFF%s\n\n" "Uninstall Complete."
 }
 
 go_debug () {
-clear; printf "\n$BLD%s $OFF%s\n\n" "
-Proceeding to update Enlightenment 22..."
+clear; printf "\n$BLD%s $OFF%s\n\n" "Proceeding to update Enlightenment 22..."
 sleep 1
 
 if [ ! -d $E22 ]; then
