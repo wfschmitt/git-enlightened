@@ -1048,8 +1048,7 @@ if [ ! -d $E22 ]; then
     exit 1
 fi
 
-printf "\n$BLD%s $OFF%s\n\n" "
-Satisfying dependencies under Ubuntu ${RELEASE^}..."
+printf "\n$BLD%s $OFF%s\n\n" "Satisfying dependencies under Ubuntu ${RELEASE^}..."
 if [ $CODE == en ]; then
     sudo apt-get install --yes $DEPS_EN
     sleep 1
