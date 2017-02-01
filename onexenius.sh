@@ -49,15 +49,15 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/13 |& sed '$!d')
-CURVERNUM="13.6"
+CURVERNUM="13.7"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
 BRN="\e[0;31m"  #~ (Brown text)
 BDR="\e[1;31m"  #~ (Bold red text)
-BDB="\e[0;34m"  #~ (Bold blue text)
 BDG="\e[1;32m"  #~ (Bold green text)
 BDY="\e[1;33m"  #~ (Bold yellow text)
+BDP="\e[0;35m"  #~ (Bold purple text)
 OFF="\e[0m"     #~ (Turn off ansi colors)
 
 #~ (Compiler and linker flags)
