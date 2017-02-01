@@ -363,7 +363,7 @@ for I in $EPROG
 do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
-    printf "\n$BDB%s $OFF%s\n\n" "Building $I..."
+    printf "\n$BDP%s $OFF%s\n\n" "Building $I..."
 
     #~ (Configure)
         case $I in
@@ -463,7 +463,7 @@ for I in $EPROG
 do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
-    printf "\n$BDB%s $OFF%s\n\n" "Updating $I..."
+    printf "\n$BDP%s $OFF%s\n\n" "Updating $I..."
     #~ (Source tree cleanup)
     make distclean &>/dev/null
     git reset --hard &>/dev/null
@@ -565,7 +565,7 @@ for I in $EPROG
 do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
-    printf "\n$BDB%s $OFF%s\n\n" "Rebuilding $I with optimizations enabled..."
+    printf "\n$BDP%s $OFF%s\n\n" "Rebuilding $I with optimizations enabled..."
     make distclean &>/dev/null
     git reset --hard; echo
     git pull
