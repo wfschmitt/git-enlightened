@@ -49,7 +49,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/13 |& sed '$!d')
-CURVERNUM="13.7"
+CURVERNUM="13.8"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -1169,7 +1169,7 @@ main () {
 trap '{ printf "\n$BDR%s $OFF%s\n\n" " KEYBOARD INTERRUPT."; exit 130; }' INT
 
 printf "\n%s\n" "$VER_ONLINE"
-printf "%s\n" "(currently running v$CURVERNUM)"
+printf "%s\n" "[you are currently using v$CURVERNUM]"
 
 sleep 3
 
