@@ -247,8 +247,7 @@ fi
 ls_ppa () {
 PPA=$(awk '$1 == "Package:" { print $2 }' /var/lib/apt/lists/*ppa*Packages)
 
-for I in $(echo $PPA | xargs -n1 | sort -u)
-do
+for I in $(echo $PPA | xargs -n1 | sort -u); do
     dpkg-query -Wf'${db:Status-abbrev}' $I &>/dev/null
         if [ $? == 0 ]; then
         #~ (Packages installed from PPAs are excluded)
@@ -307,8 +306,7 @@ fi
 }
 
 build_std () {
-for I in $EPROG
-do
+for I in $EPROG; do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
     printf "\n$BLD%s $OFF%s\n\n" "Building $I..."
@@ -359,8 +357,7 @@ done
 }
 
 build_no_nls () {
-for I in $EPROG
-do
+for I in $EPROG; do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
     printf "\n$BDP%s $OFF%s\n\n" "Building $I..."
@@ -415,8 +412,7 @@ done
 }
 
 rebuild_std () {
-for I in $EPROG
-do
+for I in $EPROG; do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
     printf "\n$BLD%s $OFF%s\n\n" "Updating $I..."
@@ -459,8 +455,7 @@ done
 }
 
 rebuild_no_nls () {
-for I in $EPROG
-do
+for I in $EPROG; do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
     printf "\n$BDP%s $OFF%s\n\n" "Updating $I..."
@@ -510,8 +505,7 @@ rebuild_optim () {
 export CFLAGS="-O3 -ffast-math -march=native"
 export CXXFLAGS="-O3 -ffast-math -march=native"
 
-for I in $EPROG
-do
+for I in $EPROG; do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
     printf "\n$BDY%s $OFF%s\n\n" "Rebuilding $I with optimizations and nls support enabled..."
@@ -561,8 +555,7 @@ rebuild_optim_no_nls () {
 export CFLAGS="-O3 -ffast-math -march=native"
 export CXXFLAGS="-O3 -ffast-math -march=native"
 
-for I in $EPROG
-do
+for I in $EPROG; do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
     printf "\n$BDP%s $OFF%s\n\n" "Rebuilding $I with optimizations enabled..."
@@ -618,8 +611,7 @@ sudo sysctl -w kernel.yama.ptrace_scope=0
 ulimit -c unlimited
 echo "/var/crash/core.%e.%p.%h.%t" | sudo tee /proc/sys/kernel/core_pattern
 
-for I in $EPROG
-do
+for I in $EPROG; do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
     printf "\n$BDY%s $OFF%s\n\n" "Rebuilding $I with debug symbols..."
@@ -809,15 +801,13 @@ sudo rm -rf org.enlightenment.Ethumb.service
 
 cd $HOME
 
-find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I
-do
+find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I; do
     if [ -f "$I/efl.mo" ]; then
         cd "$I" && sudo rm -rf efl*
     fi
 done
 
-find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I
-do
+find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I; do
     if [ -f "$I/enlightenment.mo" ]; then
         cd "$I" && sudo rm -rf enlightenment*
     fi
@@ -825,8 +815,7 @@ done
 
 cd $HOME
 
-find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I
-do
+find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I; do
     if [ -f "$I/terminology.mo" ]; then
         cd "$I" && sudo rm -rf terminology*
     fi
@@ -961,8 +950,7 @@ if [ ! -d $E22 ]; then
     exit 1
 fi
 
-for I in $EPROG
-do
+for I in $EPROG; do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I && remove_prgm
 done
@@ -979,8 +967,7 @@ clear; echo; read -t 5 -p "Wait 5s or hit Ctrl-C to abort..."
 
 printf "\n\n$BLD%s $OFF%s\n\n" "Complete uninstallation of E22 and deps, this may take some time."
 
-for I in $EPROG
-do
+for I in $EPROG; do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I && remove_prgm
 done
