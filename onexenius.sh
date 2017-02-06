@@ -1029,7 +1029,8 @@ clear; printf "\n$BLD%s $OFF%s\n\n" "Proceeding to update Enlightenment 22..."
 sleep 1
 
 if [ ! -d $E22 ]; then
-    printf "\n$BDR%s $OFF%s\n\n" " NOTHING TO DEBUG!"
+    printf "\n$BDR%s $OFF%s\n" " NOTHING TO DEBUG!"
+    printf "\n$BDR%s $OFF%s\n\n" " PLEASE SELECT ANOTHER OPTION."
     exit 1
 fi
 
