@@ -4,7 +4,8 @@
 
 #~ This script allows you to safely and easily download, install, update the
 #~ GIT master version of Enlightenment 0.22 (a.k.a E22) on Ubuntu Xenial Xerus
-#~ and Yakkety Yak; or helps you perform a clean uninstall of E22 GIT.
+#~ Yakkety Yak or Zesty Zapus (experimental); or helps you perform a clean
+#~ uninstall of E22 GIT.
 
 #~ To execute the script:
 #~ 1. Open Terminal (uncheck "Limit scrollback to" in Profile Preferences)
@@ -90,11 +91,12 @@ libblkid-dev libluajit-5.1-dev liblz4-dev libmount-dev \
 libopenjpeg-dev libpam0g-dev libpoppler-cpp-dev libpoppler-dev \
 libpoppler-private-dev libproxy-dev libpulse-dev libraw-dev \
 librsvg2-dev libscim-dev libsndfile1-dev libspectre-dev \
-libssl-dev libsystemd-dev libtiff5-dev libtool libudisks2-dev \
-libunibreak-dev libvlc-dev libwebp-dev libxcb-keysyms1-dev \
-libxcursor-dev libxine2-dev libxinerama-dev libxkbfile-dev \
-libxrandr-dev libxss-dev libxtst-dev linux-tools-common \
-texlive-base unity-greeter-badges valgrind wmctrl"
+libssl-dev libsystemd-dev libtiff5-dev libtool libudev-dev \
+libudisks2-dev libunibreak-dev libvlc-dev libwebp-dev \
+libxcb-keysyms1-dev libxcursor-dev libxine2-dev libxinerama-dev \
+libxkbfile-dev libxrandr-dev libxss-dev libxtst-dev \
+linux-tools-common texlive-base unity-greeter-badges \
+valgrind wmctrl"
 
 TRIM_EN=${DEPS_EN:46}
 
@@ -110,11 +112,11 @@ liblz4-dev libmount-dev libopenjpeg-dev libpam0g-dev \
 libpoppler-cpp-dev libpoppler-dev libpoppler-private-dev \
 libproxy-dev libpulse-dev libraw-dev librsvg2-dev libscim-dev \
 libsndfile1-dev libspectre-dev libssl-dev libsystemd-dev \
-libtiff5-dev libtool libudisks2-dev libunibreak-dev libvlc-dev \
-libwebp-dev libxcb-keysyms1-dev libxcursor-dev libxine2-dev \
-libxinerama-dev libxkbfile-dev libxrandr-dev libxss-dev \
-libxtst-dev linux-tools-common unity-greeter-badges texlive-base \
-valgrind wmctrl"
+libtiff5-dev libtool libudev-dev libudisks2-dev libunibreak-dev \
+libvlc-dev libwebp-dev libxcb-keysyms1-dev libxcursor-dev \
+libxine2-dev libxinerama-dev libxkbfile-dev libxrandr-dev \
+libxss-dev libxtst-dev linux-tools-common unity-greeter-badges \
+texlive-base valgrind wmctrl"
 
 TRIM=${DEPS:48}
 
@@ -1126,7 +1128,8 @@ fi
 
 printf "\n\n$BLD%s $OFF%s\n" "SCANNING SYSTEM AND GIT REPOSITORIES..."; sleep 1
 
-if [ $RELEASE == xenial ] || [ $RELEASE == yakkety ]; then
+if [ $RELEASE == zesty ] || [ $RELEASE == yakkety ] || [ $RELEASE == xenial ]
+then
     printf "\n$BDG%s $OFF%s\n\n" "Ubuntu ${RELEASE^}... OK"; sleep 1
 else
     printf "\n$BDR%s $OFF%s\n\n" " UNSUPPORTED OPERATING SYSTEM."
