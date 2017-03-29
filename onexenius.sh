@@ -3,7 +3,7 @@
 #~#~# ONEXENIUS.SH
 
 #~ This script allows you to safely and easily download, install, update the
-#~ GIT master version of Enlightenment 0.22 (a.k.a E22) on Ubuntu Xenial Xerus
+#~ GIT master version of Enlightenment 0.22 (a.k.a E22) on Ubuntu Xenial Xerus,
 #~ Yakkety Yak or Zesty Zapus (experimental); or helps you perform a clean
 #~ uninstall of E22 GIT.
 
