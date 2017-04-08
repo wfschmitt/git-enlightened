@@ -50,7 +50,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/13 |& sed '$!d')
-CURVERNUM="13.9"
+CURVERNUM="14.0"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -88,7 +88,7 @@ libcogl-dev libfontconfig1-dev libfreetype6-dev libfribidi-dev \
 libgif-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
 libharfbuzz-dev libibus-1.0-dev libiconv-hook-dev libjpeg-dev \
 libblkid-dev libluajit-5.1-dev liblz4-dev libmount-dev \
-libopenjpeg-dev libpam0g-dev libpoppler-cpp-dev libpoppler-dev \
+libpam0g-dev libpoppler-cpp-dev libpoppler-dev \
 libpoppler-private-dev libproxy-dev libpulse-dev libraw-dev \
 librsvg2-dev libscim-dev libsndfile1-dev libspectre-dev \
 libssl-dev libsystemd-dev libtiff5-dev libtool libudev-dev \
@@ -108,7 +108,7 @@ libbluetooth-dev libbullet-dev libcogl-dev libfontconfig1-dev \
 libfreetype6-dev libfribidi-dev libgif-dev libgstreamer1.0-dev \
 libgstreamer-plugins-base1.0-dev libharfbuzz-dev libibus-1.0-dev \
 libiconv-hook-dev libjpeg-dev libblkid-dev libluajit-5.1-dev \
-liblz4-dev libmount-dev libopenjpeg-dev libpam0g-dev \
+liblz4-dev libmount-dev libpam0g-dev \
 libpoppler-cpp-dev libpoppler-dev libpoppler-private-dev \
 libproxy-dev libpulse-dev libraw-dev librsvg2-dev libscim-dev \
 libsndfile1-dev libspectre-dev libssl-dev libsystemd-dev \
@@ -219,6 +219,10 @@ fi
 bin_deps ()  {
 sudo apt-get update && sudo apt-get dist-upgrade --yes
 
+if [ $RELEASE != zesty ]; then
+    sudo apt-get install --yes libopenjpeg-dev
+fi
+
 if [ ! -f $DOCUDIR/installed.txt ]; then
     dpkg --get-selections >    $DOCUDIR/installed.txt
     sed -i '/linux-generic*/d' $DOCUDIR/installed.txt
@@ -253,7 +257,7 @@ for I in $(echo $PPA | xargs -n1 | sort -u); do
     dpkg-query -Wf'${db:Status-abbrev}' $I &>/dev/null
         if [ $? == 0 ]; then
         #~ (Packages installed from PPAs are excluded)
-            sed -i "/$I/d" $DOCUDIR/installed.txt
+            sed -i '/$I/d' $DOCUDIR/installed.txt
         fi
 done
 }
@@ -998,6 +1002,10 @@ rm $DOCUDIR/installed.txt &>/dev/null
 sudo apt-get autoremove --purge
 sudo dpkg --purge $(COLUMNS=200 dpkg -l | grep "^rc" | tr -s ' ' | \
 cut -d ' ' -f 2) &>/dev/null
+
+if [ $RELEASE != zesty ]; then
+    sudo apt-get autoremove --yes libopenjpeg-dev &>/dev/null
+fi
 
 echo; beep_question; echo
 
