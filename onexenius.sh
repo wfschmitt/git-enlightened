@@ -50,7 +50,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="14.0"
+CURVERNUM="14.1"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -93,7 +93,7 @@ libpoppler-private-dev libproxy-dev libpulse-dev libraw-dev \
 librsvg2-dev libscim-dev libsndfile1-dev libspectre-dev \
 libssl-dev libsystemd-dev libtiff5-dev libtool libudev-dev \
 libudisks2-dev libunibreak-dev libvlc-dev libwebp-dev \
-libxcb-keysyms1-dev libxcursor-dev libxine2-dev libxinerama-dev \
+libxcursor-dev libxine2-dev libxinerama-dev \
 libxkbfile-dev libxrandr-dev libxss-dev libxtst-dev \
 linux-tools-common texlive-base unity-greeter-badges \
 valgrind wmctrl"
@@ -113,8 +113,8 @@ libpoppler-cpp-dev libpoppler-dev libpoppler-private-dev \
 libproxy-dev libpulse-dev libraw-dev librsvg2-dev libscim-dev \
 libsndfile1-dev libspectre-dev libssl-dev libsystemd-dev \
 libtiff5-dev libtool libudev-dev libudisks2-dev libunibreak-dev \
-libvlc-dev libwebp-dev libxcb-keysyms1-dev libxcursor-dev \
-libxine2-dev libxinerama-dev libxkbfile-dev libxrandr-dev \
+libvlc-dev libwebp-dev libxcursor-dev libxine2-dev \
+libxinerama-dev libxkbfile-dev libxrandr-dev \
 libxss-dev libxtst-dev linux-tools-common unity-greeter-badges \
 texlive-base valgrind wmctrl"
 
