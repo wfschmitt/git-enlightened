@@ -3,9 +3,8 @@
 #~#~# ONEXENIUS.SH
 
 #~ This script allows you to safely and easily download, install, update the
-#~ GIT master version of Enlightenment 0.22 (a.k.a E22) on Ubuntu Xenial Xerus,
-#~ Yakkety Yak or Zesty Zapus (experimental); or helps you perform a clean
-#~ uninstall of E22 GIT.
+#~ GIT master version of Enlightenment 0.22 (a.k.a E22) on Ubuntu Xenial Xerus
+#~ and Zesty Zapus; or helps you perform a clean uninstall of E22 GIT.
 
 #~ To execute the script:
 #~ 1. Open Terminal (uncheck "Limit scrollback to" in Profile Preferences)
@@ -50,7 +49,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="14.1"
+CURVERNUM="14.2"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -1136,7 +1135,7 @@ fi
 
 printf "\n\n$BLD%s $OFF%s\n" "SCANNING SYSTEM AND GIT REPOSITORIES..."; sleep 1
 
-if [ $RELEASE == zesty ] || [ $RELEASE == yakkety ] || [ $RELEASE == xenial ]
+if [ $RELEASE == zesty ] || [ $RELEASE == xenial ]
 then
     printf "\n$BDG%s $OFF%s\n\n" "Ubuntu ${RELEASE^}... OK"; sleep 1
 else
