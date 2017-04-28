@@ -23,7 +23,7 @@
 #~ want to——I do this on a daily basis. However, I recommend doing a
 #~ complete uninstall (you may want to keep the hidden ccache folder)
 #~ and reinstall of E22 every three weeks or so
-#~ to improve the user experience.
+#~ for an optimal user experience.
 
 #~ ONEXENIUS is written by batden@sfr.fr, feel free to use this script
 #~ as you see fit.
