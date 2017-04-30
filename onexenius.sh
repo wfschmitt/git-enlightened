@@ -1010,7 +1010,8 @@ if [ $RELEASE != zesty ]; then
     sudo apt-get autoremove --yes libopenjpeg-dev &>/dev/null
 fi
 
-echo; ubuntu-support-status
+printf "\n%s\n\n" "[Output of ubuntu-support-status]"
+ubuntu-support-status
 
 echo; beep_question; echo
 
