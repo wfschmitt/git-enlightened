@@ -49,7 +49,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="14.4"
+CURVERNUM="14.5"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -608,7 +608,9 @@ rebuild_for_debug () {
 export LC_ALL=C
 export CFLAGS="-g -ggdb3"
 export CXXFLAGS="-g -ggdb3"
-export EINA_LOG_LEVEL=4
+#~ (Uncomment the line below to produce a more detailed output)
+#~export EINA_LOG_LEVEL=4
+
 echo
 
 #~ (Temporary tweaks until next reboot)
