@@ -49,7 +49,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="14.3"
+CURVERNUM="14.4"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -962,6 +962,8 @@ done
 
 deep_clean
 
+logger -i "onexenius.sh: Enlightenment 22 was successfully uninstalled."
+
 sudo updatedb
 beep_ok
 echo; cowsay -d "That's All Folks!"; echo
@@ -978,6 +980,8 @@ for I in $EPROG; do
 done
 
 deep_clean
+
+logger -i "onexenius.sh: Enlightenment 22 was successfully uninstalled."
 
 $TITLE "Processing Ubuntu Packages . . ."
 echo; printf "\n$BLD%s $OFF%s\n\n" "Removing binary dependencies..."
@@ -1005,6 +1009,8 @@ cut -d ' ' -f 2) &>/dev/null
 if [ $RELEASE != zesty ]; then
     sudo apt-get autoremove --yes libopenjpeg-dev &>/dev/null
 fi
+
+echo; ubuntu-support-status
 
 echo; beep_question; echo
 
