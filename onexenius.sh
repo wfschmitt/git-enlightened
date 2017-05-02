@@ -1067,14 +1067,14 @@ echo
 rebuild_for_debug
 wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz
 printf "\n$BDY%s %s\n" "Launching Enlightenment into a Xephyr window..."
-printf "$BDY%s $OFF%s" "You may experience very slow performance in debug mode!"
+printf "$BDY%s $OFF%s" "You may experience slow performance in debug mode!"
 printf "\n$BDY%s %s" "Log out of Enlightenment and close the Xephyr window when you are done."
 printf "\n$BDY%s $OFF%s\n" "Then enter q to end the debugging session (quit gdb)."
 sleep 6
 
 ##~ (See ./xdebug.sh --help for options)
 cd $HOME/Enlightenment22/enlightenment/ && ./xdebug.sh
-printf "\n$BDY%s %s\n" "Please check /var/crash/ for core dumps"
+printf "\n$BDY%s %s\n" "Please check /var/crash/ for core dumps,"
 printf "\n$BDY%s $OFF%s\n\n" "and look for a file called .e-crashdump.txt in your home folder."
 }
 
