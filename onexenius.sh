@@ -14,7 +14,7 @@
 
 #~ WARNING:
 #~ Enlightenment programs installed from .deb packages (or tarballs) will
-#~ inevitably conflict with E22 programs built from GIT source code,
+#~ inevitably conflict with E22 programs compiled from GIT source code,
 #~ do not mix source code with precompiled binaries!
 #~ Please remove thoroughly any previous installation of EFL/Enlightenment
 #~ (track down and delete any leftover files) before running my script.
