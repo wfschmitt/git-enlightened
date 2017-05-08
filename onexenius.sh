@@ -49,7 +49,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="14.5"
+CURVERNUM="14.6"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -344,6 +344,9 @@ for I in $EPROG; do
                 exit 1
             fi
 
+    #~ (Uncomment the line below to run the self-tests)
+    #~echo; make -k check; echo
+
     #~ (Install)
         $TITLE "Processing ${I^} . . ."
         case $I in
@@ -451,6 +454,10 @@ for I in $EPROG; do
             beep_exit
             exit 1
         fi
+    
+    #~ (Uncomment the line below to run the self-tests)
+    #~echo; make -k check; echo
+
     #~ (Install)
     $TITLE "Processing ${I^} . . ."
     $SMIL
