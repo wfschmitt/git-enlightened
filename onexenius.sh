@@ -29,7 +29,6 @@
 #~ as you see fit.
 
 #~ Please consider sending me a tip via: https://www.paypal.me/PJGuillaumie
-#~ or signing my GPG key: http://build-enlightenment.monsite-orange.fr/
 #~ Cheers!
 
 #~#~# VARIABLES
@@ -49,7 +48,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="14.6"
+CURVERNUM="14.7"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
