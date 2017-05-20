@@ -6,13 +6,13 @@
 #~ GIT master version of Enlightenment 0.22 (a.k.a E22) on Ubuntu Xenial Xerus
 #~ and Zesty Zapus; or helps you perform a clean uninstall of E22 GIT.
 
+#~ Please note that onexenius.sh is not designed for use inside Docker containers.
+
 #~ To execute the script:
 #~ 1. Open Terminal (uncheck "Limit scrollback to" in Profile Preferences)
 #~ 2. Change to the download folder
 #~ 3. Make the script executable with chmod +x
 #~ 4. Run it with ./onexenius.sh
-
-#~ Please note that onexenius.sh is not designed for use inside Docker containers.
 
 #~ WARNING:
 #~ Enlightenment programs installed from .deb packages (or tarballs) will
