@@ -12,6 +12,8 @@
 #~ 3. Make the script executable with chmod +x
 #~ 4. Run it with ./onexenius.sh
 
+#~ Please note that onexenius.sh is not designed for use inside Docker containers.
+
 #~ WARNING:
 #~ Enlightenment programs installed from .deb packages (or tarballs) will
 #~ inevitably conflict with E22 programs compiled from GIT source code,
@@ -48,7 +50,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="14.7"
+CURVERNUM="14.8"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
