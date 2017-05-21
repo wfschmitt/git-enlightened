@@ -671,7 +671,7 @@ done
 remove_prgm () {
 case $I in
   efl)
-    printf "\n$BLD%s $OFF%s\n\n" "Cleaning $I... Please wait."
+    printf "\n$BLD%s $OFF%s\n\n" "Cleaning $I... Please be patient."
     ;;
   *)
     printf "\n$BLD%s $OFF%s\n\n" "Cleaning $I..."
