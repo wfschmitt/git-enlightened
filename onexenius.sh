@@ -54,7 +54,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="14.8"
+CURVERNUM="14.9"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
