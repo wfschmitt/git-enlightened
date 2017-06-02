@@ -174,7 +174,7 @@ if [ $INPUT -lt 1 ]; then
     printf "$BDY%s %s\n" "5. Update and rebuild E22 for debugging" #~ (Slower——Not suitable for daily use)
     printf "$BDY%s %s\n" "   (make sure default E theme is applied)."
     printf "$BDY%s %s\n" "6. Update and rebuild E22 with optimizations enabled" #~ (Run faster)
-    printf "$BDY%s $OFF%s\n\n" "   (tarball generation: answer yes to i18n support)."
+    printf "$BDY%s $OFF%s\n\n" "   (tarball generation: Answer yes to i18n support)."
     sleep 1 && printf "$BLD%s $OFF%s\n\n" "—  Or press Ctrl-C to quit."
     read INPUT
 fi
