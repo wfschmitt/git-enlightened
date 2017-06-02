@@ -6,6 +6,10 @@
 #~ GIT master version of Enlightenment 0.22 (a.k.a E22) on Ubuntu Xenial Xerus
 #~ and Zesty Zapus; or helps you perform a clean uninstall of E22 GIT.
 
+#~ IMPORTANT: The EFL build is currently broken ("eolian_cxx" error).
+#~ As a workaround, change "--enable-cxx-bindings" to
+#~ "--disable-cxx-bindings" in the configure options.
+
 #~ Please note that onexenius.sh is not intended for use inside Docker containers.
 
 #~ To execute the script:
@@ -290,7 +294,7 @@ mkdir $HOME/Dropbox/Enlight22/E_$TSTAMP
 cp -aR $HOME/.elementary $HOME/Dropbox/Enlight22/E_$TSTAMP
 cp -aR $HOME/.e $HOME/Dropbox/Enlight22/E_$TSTAMP
 sleep 2
-#~ (Timestamp: see the date man page to convert epoch to human readable date)
+#~ (Timestamp: See the date man page to convert epoch to human readable date)
 }
 
 dpbx_detect () {
@@ -551,7 +555,7 @@ for I in $EPROG; do
         fi
     sleep 2
 
-    ##~  (BUILD TEST: uncomment the line below to produce a tarball
+    ##~  (BUILD TEST: Uncomment the line below to produce a tarball
     ##~  ——your terminal may appear to be frozen, waiting a few
     ##~  minutes will allow the task to complete)
 
@@ -1134,7 +1138,7 @@ sudo ln -sf \
 sudo ln -sf /usr/local/share/xsessions/enlightenment.desktop \
 /usr/share/xsessions/enlightenment.desktop
 
-#~ (Just a joke: right click on the folder and explore the "Properties"
+#~ (Just a joke: Right click on the folder and explore the "Properties"
 #~  window to revert to the default icon)
 gvfs-set-attribute $HOME/Enlightenment22/ metadata::custom-icon \
 file:///$HOME/Enlightenment22/efl/data/elementary/themes/img/emo-smile.png
