@@ -6,10 +6,6 @@
 #~ GIT master version of Enlightenment 0.22 (a.k.a E22) on Ubuntu Xenial Xerus
 #~ and Zesty Zapus; or helps you perform a clean uninstall of E22 GIT.
 
-#~ IMPORTANT: The EFL build is currently broken ("eolian_cxx" error).
-#~ As a workaround, change "--enable-cxx-bindings" to
-#~ "--disable-cxx-bindings" in the configure options.
-
 #~ Please note that onexenius.sh is not intended for use inside Docker containers.
 
 #~ To execute the script:
@@ -54,7 +50,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="14.9"
+CURVERNUM="15.0"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -1110,7 +1106,7 @@ if [ -f /usr/local/share/locale/$CODE/LC_MESSAGES/enlightenment.mo ]; then
     rebuild_optim; echo
 else
     echo; beep_question  
-    ##~  (BUILD TEST: answer yes!)
+    ##~  (BUILD TEST: Answer yes!)
     read -t 10 -p "Build internationalization (i18n) support in Enlightenment? [y/N] " answer
     case $answer in
       [yY] )
