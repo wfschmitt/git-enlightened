@@ -141,7 +141,7 @@ if [ -d $HOME/.e/ -o -d $HOME/.elementary/ ]; then
         rm -rf $HOME/.cache/evas* &>/dev/null
         ;;
       [nN] )
-        printf "\n%s\n\n" "(do not delete the config folders... OK)"
+        printf "\n%s\n\n" "(Do not delete the config folders... OK)"
         ;;
       *    )
         rm -rf $HOME/.e/ &>/dev/null
@@ -302,10 +302,10 @@ if [ "$(pidof dropbox)" ]; then
         e_bak; echo
         ;;
       [nN] )
-        printf "%s\n\n" "(do not back up my user settings and themes folders... OK)"
+        printf "%s\n\n" "(Do not back up my user settings and themes folders... OK)"
         ;;
       *    )
-        echo; printf "%s\n\n" "(do not back up my user settings and themes folders... OK)"
+        echo; printf "%s\n\n" "(Do not back up my user settings and themes folders... OK)"
         ;;
     esac
 fi
@@ -1032,10 +1032,10 @@ if [ -d $HOME/.ccache/ ]; then
         rm -rf $HOME/.ccache/
         ;;
       [nN] )
-        printf "\n%s\n\n" "(do not delete the ccache folder... OK)"
+        printf "\n%s\n\n" "(Do not delete the ccache folder... OK)"
         ;;
       *    )
-        echo; printf "\n%s\n\n" "(do not delete the ccache folder... OK)"
+        echo; printf "\n%s\n\n" "(Do not delete the ccache folder... OK)"
         ;;
     esac
 fi
@@ -1184,7 +1184,7 @@ main () {
 trap '{ printf "\n$BDR%s $OFF%s\n\n" " KEYBOARD INTERRUPT."; exit 130; }' INT
 
 printf "\n%s\n" "$VER_ONLINE"
-printf "%s\n" "[you are currently using v$CURVERNUM]"
+printf "%s\n" "[You are currently using v$CURVERNUM]"
 
 sleep 3
 
