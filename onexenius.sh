@@ -1218,3 +1218,7 @@ fi
 }
 
 main
+
+###~ Last edited: June 7, 2017
+###~ Editor: https://www.geany.org/
+###~ Fonts: https://github.com/nathco/Office-Code-Pro
