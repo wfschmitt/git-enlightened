@@ -50,7 +50,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="15.0"
+CURVERNUM="15.1"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -828,8 +828,6 @@ find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I; do
     fi
 done
 
-cd $HOME
-
 find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I; do
     if [ -f "$I/terminology.mo" ]; then
         cd "$I" && sudo rm -rf terminology*
@@ -1134,11 +1132,6 @@ sudo ln -sf \
 sudo ln -sf /usr/local/share/xsessions/enlightenment.desktop \
 /usr/share/xsessions/enlightenment.desktop
 
-#~ (Just a joke: Right click on the folder and explore the "Properties"
-#~  window to revert to the default icon)
-gvfs-set-attribute $HOME/Enlightenment22/ metadata::custom-icon \
-file:///$HOME/Enlightenment22/efl/data/elementary/themes/img/emo-smile.png
-
 sudo updatedb; beep_ok
 $TITLE "Optimization completed."
 sleep 1; echo
@@ -1219,6 +1212,6 @@ fi
 
 main
 
-###~ Last edited: June 7, 2017
+###~ Last edited: June 8, 2017
 ###~ Editor: https://www.geany.org/
 ###~ Fonts: https://github.com/nathco/Office-Code-Pro
