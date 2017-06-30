@@ -50,7 +50,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="15.1"
+CURVERNUM="15.2"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -120,9 +120,9 @@ texlive-base valgrind wmctrl"
 
 TRIM=${DEPS:48}
 
-CLONEFL="git clone git://git.enlightenment.org/core/efl.git"
-CLONE22="git clone git://git.enlightenment.org/core/enlightenment.git"
-CLONETY="git clone git://git.enlightenment.org/apps/terminology.git"
+CLONEFL="git clone https://git.enlightenment.org/core/efl.git"
+CLONE22="git clone https://git.enlightenment.org/core/enlightenment.git"
+CLONETY="git clone https://git.enlightenment.org/apps/terminology.git"
 EPROG="efl enlightenment terminology"
 
 #~#~# FUNCTIONS
@@ -1212,6 +1212,6 @@ fi
 
 main
 
-###~ Last edited: June 8, 2017
+###~ Last edited: June 30, 2017
 ###~ Editor: https://www.geany.org/
 ###~ Fonts: https://github.com/nathco/Office-Code-Pro
