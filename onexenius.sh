@@ -963,7 +963,7 @@ printf "\n\n$BLD%s $OFF%s\n\n" "Proceeding to uninstall Enlightenment 22..."
 
 if [ ! -d $E22 ]; then
     printf "\n$BDR%s $OFF%s\n" " NOTHING TO REMOVE!"
-    printf "\n$BDR%s $OFF%s\n\n" " PLEASE SELECT ANOTHER OPTION."
+    printf "$BDR%s $OFF%s\n\n" " PLEASE SELECT ANOTHER OPTION."
     exit 1
 fi
 
@@ -1058,7 +1058,7 @@ sleep 1
 
 if [ ! -d $E22 ]; then
     printf "\n$BDR%s $OFF%s\n" " NOTHING TO DEBUG!"
-    printf "\n$BDR%s $OFF%s\n\n" " PLEASE SELECT ANOTHER OPTION."
+    printf "$BDR%s $OFF%s\n\n" " PLEASE SELECT ANOTHER OPTION."
     exit 1
 fi
 
