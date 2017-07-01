@@ -50,7 +50,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="15.2"
+CURVERNUM="15.3"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -268,6 +268,10 @@ COUNT=$(ls -d */ | wc -l)
 if [ $COUNT == 3 ]; then
     printf "$BDG%s $OFF%s\n\n" "All programs have been downloaded successfully."
     sleep 2
+elif [ $COUNT == 0 ]; then
+    printf "\n$BDR%s %s\n" " OOPS! SOMETHING WENT WRONG."
+    printf "$BDR%s $OFF%s\n\n" " SCRIPT ABORTED."
+    exit 1
 else
     printf "\n$BDY%s $OFF%s\n\n" " WARNING: ONLY $COUNT OF 3 PROGRAMS HAVE BEEN DOWNLOADED."
     sleep 6
@@ -1149,7 +1153,7 @@ if [ $RELEASE == zesty ] || [ $RELEASE == xenial ]
 then
     printf "\n$BDG%s $OFF%s\n\n" "Ubuntu ${RELEASE^}... OK"; sleep 1
 else
-    printf "\n$BDR%s $OFF%s\n\n" " UNSUPPORTED OPERATING SYSTEM."
+    printf "$BDR%s $OFF%s\n\n" " UNSUPPORTED OPERATING SYSTEM."
     exit 1
 fi
 
@@ -1212,6 +1216,6 @@ fi
 
 main
 
-###~ Last edited: June 30, 2017
+###~ Last edited: July 1, 2017
 ###~ Editor: https://www.geany.org/
 ###~ Fonts: https://github.com/nathco/Office-Code-Pro
