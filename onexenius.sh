@@ -6,7 +6,7 @@
 #~ GIT master version of Enlightenment 0.22 (a.k.a E22) on Ubuntu Xenial Xerus
 #~ and Zesty Zapus; or helps you perform a clean uninstall of E22 GIT.
 
-#~ Please note that onexenius.sh is not intended for use inside Docker containers.
+#~ Please note that onexenius.sh is not intended for use inside containers.
 
 #~ To execute the script:
 #~ 1. Open Terminal (uncheck "Limit scrollback to" in Profile Preferences)
@@ -30,7 +30,7 @@
 #~ ONEXENIUS is written by batden@sfr.fr, feel free to use this script
 #~ as you see fit.
 
-#~ Please consider sending me a tip via: https://www.paypal.me/PJGuillaumie
+#~ Please consider sending me a tip via https://www.paypal.me/PJGuillaumie
 #~ Cheers!
 
 #~#~# VARIABLES
@@ -50,7 +50,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="15.3"
+CURVERNUM="16.0"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -62,13 +62,13 @@ BDP="\e[0;35m"  #~ (Bold purple text)
 OFF="\e[0m"     #~ (Turn off ansi colors)
 
 #~ (Compiler and linker flags)
-export CPPFLAGS=-I/usr/local/include
-export LDFLAGS=-L/usr/local/lib
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 export CC="ccache gcc"
 export CXX="ccache g++"
 export USE_CCACHE=1
 export CCACHE_COMPRESS=1
+export CPPFLAGS=-I/usr/local/include
+export LDFLAGS=-L/usr/local/lib
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
 #~ (Load balancing for multi-core systems)
 NCPU="$(getconf _NPROCESSORS_ONLN)"
@@ -93,10 +93,10 @@ libpoppler-private-dev libproxy-dev libpulse-dev libraw-dev \
 librsvg2-dev libscim-dev libsndfile1-dev libspectre-dev \
 libssl-dev libsystemd-dev libtiff5-dev libtool libudev-dev \
 libudisks2-dev libunibreak-dev libvlc-dev libwebp-dev \
-libxcb-keysyms1-dev libxcursor-dev libxine2-dev \
-libxinerama-dev libxkbfile-dev libxrandr-dev libxss-dev \
-libxtst-dev linux-tools-common texlive-base \
-unity-greeter-badges valgrind wmctrl"
+libxcb-keysyms1-dev libxcursor-dev libxine2-dev libxinerama-dev \
+libxkbfile-dev libxrandr-dev libxss-dev libxtst-dev \
+linux-tools-common texlive-base unity-greeter-badges \
+valgrind wmctrl"
 
 TRIM_EN=${DEPS_EN:46}
 
@@ -108,14 +108,14 @@ libbluetooth-dev libbullet-dev libcogl-dev libfontconfig1-dev \
 libfreetype6-dev libfribidi-dev libgif-dev libgstreamer1.0-dev \
 libgstreamer-plugins-base1.0-dev libharfbuzz-dev libibus-1.0-dev \
 libiconv-hook-dev libjpeg-dev libblkid-dev libluajit-5.1-dev \
-liblz4-dev libmount-dev libpam0g-dev \
-libpoppler-cpp-dev libpoppler-dev libpoppler-private-dev \
-libproxy-dev libpulse-dev libraw-dev librsvg2-dev libscim-dev \
-libsndfile1-dev libspectre-dev libssl-dev libsystemd-dev \
-libtiff5-dev libtool libudev-dev libudisks2-dev libunibreak-dev \
-libvlc-dev libwebp-dev libxcb-keysyms1-dev libxcursor-dev \
-libxine2-dev libxinerama-dev libxkbfile-dev libxrandr-dev \
-libxss-dev libxtst-dev linux-tools-common unity-greeter-badges \
+liblz4-dev libmount-dev libpam0g-dev libpoppler-cpp-dev \
+libpoppler-dev libpoppler-private-dev libproxy-dev libpulse-dev \
+libraw-dev librsvg2-dev libscim-dev libsndfile1-dev \
+libspectre-dev libssl-dev libsystemd-dev libtiff5-dev libtool \
+libudev-dev libudisks2-dev libunibreak-dev libvlc-dev \
+libwebp-dev libxcb-keysyms1-dev libxcursor-dev libxine2-dev \
+libxinerama-dev libxkbfile-dev libxrandr-dev libxss-dev \
+libxtst-dev linux-tools-common unity-greeter-badges \
 texlive-base valgrind wmctrl"
 
 TRIM=${DEPS:48}
@@ -123,13 +123,15 @@ TRIM=${DEPS:48}
 CLONEFL="git clone https://git.enlightenment.org/core/efl.git"
 CLONE22="git clone https://git.enlightenment.org/core/enlightenment.git"
 CLONETY="git clone https://git.enlightenment.org/apps/terminology.git"
-EPROG="efl enlightenment terminology"
+CLONERG="git clone https://git.enlightenment.org/apps/rage.git"
+EPROGRM="efl enlightenment terminology rage"
 
 #~#~# FUNCTIONS
 
 leftover_detect () {
 if [ -d $HOME/.e/ -o -d $HOME/.elementary/ ]; then
-    printf "\n$BDY%s %s\n" "That's weird, configuration files from a previous install of EFL/E"
+    printf "\n$BDY%s %s\n" "
+That's weird, configuration files from a previous install of EFL/E"
     printf "$BDY%s $OFF%s\n\n" "are still present in your home folder..."
 
     read -t 10 -p "Do you want to remove these files? [Y/n] " answer
@@ -138,7 +140,11 @@ if [ -d $HOME/.e/ -o -d $HOME/.elementary/ ]; then
         rm -rf $HOME/.e/ &>/dev/null
         rm -rf $HOME/.elementary/ &>/dev/null
         rm -rf $HOME/.cache/efreet/ &>/dev/null
-        rm -rf $HOME/.cache/evas* &>/dev/null
+        rm -rf $HOME/.cache/evas/ &>/dev/null
+        rm -rf $HOME/.cache/evas_gl_common_caches/ &>/dev/null
+        rm -rf $HOME/.cache/rage/ &>/dev/null
+        rm -rf $HOME/.config/rage/ &>/dev/null
+        rm -rf $HOME/.config/terminology/ &>/dev/null
         ;;
       [nN] )
         printf "\n%s\n\n" "(Do not delete the config folders... OK)"
@@ -147,7 +153,11 @@ if [ -d $HOME/.e/ -o -d $HOME/.elementary/ ]; then
         rm -rf $HOME/.e/ &>/dev/null
         rm -rf $HOME/.elementary/ &>/dev/null
         rm -rf $HOME/.cache/efreet/ &>/dev/null
-        rm -rf $HOME/.cache/evas* &>/dev/null
+        rm -rf $HOME/.cache/evas/ &>/dev/null
+        rm -rf $HOME/.cache/evas_gl_common_caches/ &>/dev/null
+        rm -rf $HOME/.cache/rage/ &>/dev/null
+        rm -rf $HOME/.config/rage/ &>/dev/null
+        rm -rf $HOME/.config/terminology/ &>/dev/null
         ;;
     esac
 fi
@@ -166,13 +176,28 @@ if [ $INPUT -lt 1 ]; then
     printf "\n$BDG%s $OFF%s\n\n" "1. Install Enlightenment 22." #~ (Standard)
     printf "$BDG%s %s\n\n" "2. Update my E22 installation." #~ (Standard)
     printf "$BRN%s %s\n\n" "3. Uninstall E22 programs only."
-    printf "$BRN%s $OFF%s\n" "4. Uninstall E22 programs AND binary dependencies."
-    printf "$BDY%s %s\n" "5. Update and rebuild E22 for debugging" #~ (Slower——Not suitable for daily use)
+    printf "$BRN%s $OFF%s\n" "4. Uninstall E22 programs AND \
+binary dependencies."
+    printf "$BDY%s %s\n" "
+5. Update and rebuild E22 for debugging" #~ (Slower——Not suitable for daily use)
     printf "$BDY%s %s\n" "   (Make sure default E theme is applied)."
-    printf "$BDY%s %s\n" "6. Update and rebuild E22 with optimizations enabled" #~ (Run faster)
-    printf "$BDY%s $OFF%s\n\n" "   (Tarball generation: Answer yes to i18n support)."
+    printf "$BDY%s %s\n" "
+6. Update and rebuild E22 with optimizations enabled" #~ (Run faster)
+    printf "$BDY%s $OFF%s\n\n" "   (Tarball generation? \
+Answer yes to i18n support)."
     sleep 1 && printf "$BLD%s $OFF%s\n\n" "—  Or press Ctrl-C to quit."
     read INPUT
+fi
+}
+
+new_prgrm () {
+sleep 1
+if [ ! -d $E22/rage/ ]; then
+    printf "\n$BDY%s %s\n" "
+Since version 16.0, ONEXENIUS now includes one more Enlightenment program."
+    printf "$BDY%s $OFF%s\n\n" "
+Please relaunch the script and select option #1 to build it."
+    exit 1
 fi
 }
 
@@ -253,7 +278,8 @@ fi
 ls_ppa () {
 PPA=$(awk '$1 == "Package:" { print $2 }' /var/lib/apt/lists/*ppa*Packages)
 
-for I in $(echo $PPA | xargs -n1 | sort -u); do
+for I in $(echo $PPA | xargs -n1 | sort -u)
+do
     dpkg-query -Wf'${db:Status-abbrev}' $I &>/dev/null
         if [ $? == 0 ]; then
         #~ (Packages installed from PPAs are excluded)
@@ -265,7 +291,7 @@ done
 ls_dir () {
 COUNT=$(ls -d */ | wc -l)
 
-if [ $COUNT == 3 ]; then
+if [ $COUNT == 4 ]; then
     printf "$BDG%s $OFF%s\n\n" "All programs have been downloaded successfully."
     sleep 2
 elif [ $COUNT == 0 ]; then
@@ -273,7 +299,8 @@ elif [ $COUNT == 0 ]; then
     printf "$BDR%s $OFF%s\n\n" " SCRIPT ABORTED."
     exit 1
 else
-    printf "\n$BDY%s $OFF%s\n\n" " WARNING: ONLY $COUNT OF 3 PROGRAMS HAVE BEEN DOWNLOADED."
+    printf "\n$BDY%s $OFF%s\n\n" "
+ WARNING: ONLY $COUNT OF 4 PROGRAMS HAVE BEEN DOWNLOADED."
     sleep 6
 fi
 }
@@ -300,23 +327,27 @@ sleep 2
 dpbx_detect () {
 if [ "$(pidof dropbox)" ]; then
     printf "$BDG%s $OFF%s\n" "DROPBOX is running on this computer..."
-    beep_question; read -t 10 -p "Do you want to back up your E22 settings to your Dropbox now? [y/N] " answer
+    beep_question; read -t 10 -p "
+Do you want to back up your E22 settings to your Dropbox now? [y/N] " answer
     case $answer in
       [yY] )
         e_bak; echo
         ;;
       [nN] )
-        printf "%s\n\n" "(Do not back up my user settings and themes folders... OK)"
+        printf "%s\n\n" "
+(Do not back up my user settings and themes folders... OK)"
         ;;
       *    )
-        echo; printf "%s\n\n" "(Do not back up my user settings and themes folders... OK)"
+        echo; printf "%s\n\n" "
+(Do not back up my user settings and themes folders... OK)"
         ;;
     esac
 fi
 }
 
 build_std () {
-for I in $EPROG; do
+for I in $EPROGRM
+do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
     printf "\n$BLD%s $OFF%s\n\n" "Building $I..."
@@ -324,14 +355,14 @@ for I in $EPROG; do
     #~ (Configure)
         case $I in
           efl)
-            $GEN --enable-cxx-bindings --enable-harfbuzz \
-            --enable-image-loader-webp --enable-multisense --enable-systemd \
-            --enable-xine --enable-xinput22 
+            $GEN --disable-cxx-bindings --enable-harfbuzz \
+            --enable-image-loader-webp --enable-multisense \
+            --enable-systemd --enable-xine --enable-xinput22
             ;;
           enlightenment)
             $GEN --enable-mount-eeze --disable-wl-desktop-shell
             ;;
-          *)
+          *) 
             $GEN
             ;;
         esac
@@ -370,7 +401,8 @@ done
 }
 
 build_no_nls () {
-for I in $EPROG; do
+for I in $EPROGRM
+do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
     printf "\n$BDP%s $OFF%s\n\n" "Building $I..."
@@ -413,7 +445,7 @@ for I in $EPROG; do
           efl)
             beep_attention; $SMIL
             ;;
-          *)
+          *) 
             $SMIL
             ;;
         esac
@@ -425,7 +457,10 @@ done
 }
 
 rebuild_std () {
-for I in $EPROG; do
+new_prgrm
+
+for I in $EPROGRM
+do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
     printf "\n$BLD%s $OFF%s\n\n" "Updating $I..."
@@ -439,8 +474,8 @@ for I in $EPROG; do
         case $I in
           efl)
             $GEN --enable-cxx-bindings --enable-harfbuzz \
-            --enable-image-loader-webp --enable-multisense --enable-systemd \
-            --enable-xine --enable-xinput22 
+            --enable-image-loader-webp --enable-multisense \
+            --enable-systemd --enable-xine --enable-xinput22 
             ;;
           enlightenment)
             $GEN --enable-mount-eeze --disable-wl-desktop-shell
@@ -459,7 +494,7 @@ for I in $EPROG; do
             beep_exit
             exit 1
         fi
-    
+
     #~ (Uncomment the line below to run the self-tests)
     #~echo; make -k check; echo
 
@@ -472,7 +507,10 @@ done
 }
 
 rebuild_no_nls () {
-for I in $EPROG; do
+new_prgrm
+
+for I in $EPROGRM
+do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
     printf "\n$BDP%s $OFF%s\n\n" "Updating $I..."
@@ -519,13 +557,17 @@ done
 }
 
 rebuild_optim () {
+new_prgrm
+
 export CFLAGS="-O3 -ffast-math -march=native"
 export CXXFLAGS="-O3 -ffast-math -march=native"
 
-for I in $EPROG; do
+for I in $EPROGRM
+do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
-    printf "\n$BDY%s $OFF%s\n\n" "Rebuilding $I with optimizations and nls support enabled..."
+    printf "\n$BDY%s $OFF%s\n\n" "
+Rebuilding $I with optimizations and nls support enabled..."
     make distclean &>/dev/null
     git reset --hard; echo
     git pull
@@ -533,8 +575,9 @@ for I in $EPROG; do
         case $I in
           efl)
             $GEN --enable-cxx-bindings --enable-harfbuzz \
-            --enable-image-loader-webp --enable-multisense --enable-systemd \
-            --enable-xine --enable-xinput22 --with-profile=release
+            --enable-image-loader-webp --enable-multisense \
+            --enable-systemd --enable-xine --enable-xinput22 \
+            --with-profile=release
             ;;
           enlightenment)
             $GEN --enable-mount-eeze --disable-wl-desktop-shell \
@@ -569,10 +612,13 @@ done
 }
 
 rebuild_optim_no_nls () {
+new_prgrm
+
 export CFLAGS="-O3 -ffast-math -march=native"
 export CXXFLAGS="-O3 -ffast-math -march=native"
 
-for I in $EPROG; do
+for I in $EPROGRM
+do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
     printf "\n$BDP%s $OFF%s\n\n" "Rebuilding $I with optimizations enabled..."
@@ -580,24 +626,24 @@ for I in $EPROG; do
     git reset --hard; echo
     git pull
     echo
-      case $I in
-        efl)
-          $GEN --enable-cxx-bindings --enable-image-loader-webp \
-          --enable-multisense --enable-systemd --enable-xine \
-          --enable-xinput22 --disable-harfbuzz --disable-nls \
-          --with-profile=release
-          ;;
-        enlightenment)
-          $GEN --enable-mount-eeze --disable-nls \
-          --disable-wl-desktop-shell --with-profile=FAST_PC
-          ;;
-        terminology)
-          $GEN --disable-nls
-          ;;
-        *)
-          $GEN
-          ;;
-      esac
+        case $I in
+          efl)
+            $GEN --enable-cxx-bindings --enable-image-loader-webp \
+            --enable-multisense --enable-systemd --enable-xine \
+            --enable-xinput22 --disable-harfbuzz --disable-nls \
+            --with-profile=release
+            ;;
+          enlightenment)
+            $GEN --enable-mount-eeze --disable-nls \
+            --disable-wl-desktop-shell --with-profile=FAST_PC
+            ;;
+          terminology)
+            $GEN --disable-nls
+            ;;
+          *)
+            $GEN
+            ;;
+        esac
     echo
     $TITLE "Processing ${I^} . . ."
     make
@@ -617,10 +663,12 @@ done
 }
 
 rebuild_for_debug () {
+new_prgrm	
+
 export LC_ALL=C
 export CFLAGS="-g -ggdb3"
 export CXXFLAGS="-g -ggdb3"
-#~ (Uncomment the line below to produce a more detailed output)
+#~ (Uncomment the line below to produce a much more detailed output)
 #~export EINA_LOG_LEVEL=4
 
 echo
@@ -630,7 +678,8 @@ sudo sysctl -w kernel.yama.ptrace_scope=0
 ulimit -c unlimited
 echo "/var/crash/core.%e.%p.%h.%t" | sudo tee /proc/sys/kernel/core_pattern
 
-for I in $EPROG; do
+for I in $EPROGRM
+do
     $TITLE "Processing ${I^} . . ."
     cd $E22/$I
     printf "\n$BDY%s $OFF%s\n\n" "Rebuilding $I with debug symbols..."
@@ -672,14 +721,14 @@ for I in $EPROG; do
 done
 }
 
-remove_prgm () {
+remove_prgrm () {
 case $I in
-  efl)
-    printf "\n$BLD%s $OFF%s\n\n" "Cleaning $I... Please be patient."
-    ;;
-  *)
-    printf "\n$BLD%s $OFF%s\n\n" "Cleaning $I..."
-    ;;
+    efl)
+        printf "\n$BLD%s $OFF%s\n\n" "Cleaning $I... Please be patient."
+        ;;
+    *)
+        printf "\n$BLD%s $OFF%s\n\n" "Cleaning $I..."
+        ;;
 esac
 
 sudo make uninstall &>/dev/null
@@ -691,8 +740,9 @@ deep_clean () {
 echo; printf "\n$BLD%s $OFF%s\n\n" "Deeper cleaning..."; sleep 1
 
 cd $E22
-sudo rm -rf enlightenment/
+sudo rm -rf rage/
 sudo rm -rf terminology/
+sudo rm -rf enlightenment/
 sudo rm -rf efl/
 
 cd $HOME
@@ -701,6 +751,8 @@ rm -rf .e/
 rm -rf .elementary/
 rm -rf .cache/efreet/
 rm -rf .cache/evas_gl_common_caches/
+rm -rf .cache/rage/
+rm -rf .config/rage/
 rm -rf .config/terminology/
 
 cd /usr/local/bin/
@@ -768,6 +820,7 @@ sudo rm -rf libeolian*
 sudo rm -rf libephysics*
 sudo rm -rf libethumb*
 sudo rm -rf libevas*
+sudo rm -rf rage*
 
 cd /usr/local/lib/cmake/
 sudo rm -rf Ecore*
@@ -801,6 +854,7 @@ sudo rm -rf enlightenment*
 sudo rm -rf eo*
 sudo rm -rf ethumb*
 sudo rm -rf evas*
+sudo rm -rf rage*
 sudo rm -rf terminology*
 
 cd /usr/local/share/applications/
@@ -820,19 +874,22 @@ sudo rm -rf org.enlightenment.Ethumb.service
 
 cd $HOME
 
-find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I; do
+find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I
+do
     if [ -f "$I/efl.mo" ]; then
         cd "$I" && sudo rm -rf efl*
     fi
 done
 
-find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I; do
+find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I
+do
     if [ -f "$I/enlightenment.mo" ]; then
         cd "$I" && sudo rm -rf enlightenment*
     fi
 done
 
-find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I; do
+find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I
+do
     if [ -f "$I/terminology.mo" ]; then
         cd "$I" && sudo rm -rf terminology*
     fi
@@ -841,7 +898,11 @@ done
 
 install_go () {
 clear; printf "\n$BLD%s $OFF%s\n\n" "Proceeding to install Enlightenment 22..."
+
+if [ ! -d $E22 ]; then
 leftover_detect
+fi
+
 beep_attention
 zen_warn 2>/dev/null; sleep 1
 
@@ -860,13 +921,15 @@ printf "\n\n$BLD%s $OFF%s\n\n" "Fetching git code..."
 $CLONEFL; echo
 $CLONE22; echo
 $CLONETY; echo
+$CLONERG; echo
 
 ls_dir
 
 $TITLE "Processing Enlightenment Programs . . ."
 echo; beep_question
 
-read -t 10 -p "Build internationalization (i18n) support in Enlightenment? [y/N] " answer
+read -t 10 -p "Build internationalization (i18n) support \
+in Enlightenment? [y/N] " answer
 case $answer in
   [yY] )
     build_std; echo
@@ -897,8 +960,11 @@ sudo updatedb; beep_ok
 
 $TITLE "Installation Complete."
 printf "\n\n$BDY%s %s" "Enlightenment first time wizard tips:"
-printf "\n$BDY%s %s" "Update checking——You can disable this feature because it serves no useful purpose."
-printf "\n$BDY%s $OFF%s\n\n\n" "Network management support——Do not install Connman!"
+printf "\n$BDY%s %s" "
+Update checking——You can disable this feature because it serves no \
+useful purpose."
+printf "\n$BDY%s $OFF%s\n\n\n" "
+Network management support——Do not install Connman!"
 echo; cowsay "No Reboot Required... That's All Folks!"; echo
 #~ (Then log out and select Enlightenment on the login screen)
 }
@@ -907,7 +973,8 @@ update_go () {
 clear; printf "\n$BLD%s $OFF%s\n\n" "Proceeding to update Enlightenment 22..."
 sleep 1
 
-printf "\n$BLD%s $OFF%s\n\n" "Satisfying dependencies under Ubuntu ${RELEASE^}..."
+printf "\n$BLD%s $OFF%s\n\n" "
+Satisfying dependencies under Ubuntu ${RELEASE^}..."
 if [ $CODE == en ]; then
     sudo apt-get install --yes $DEPS_EN
     sleep 1
@@ -923,7 +990,8 @@ if [ -f /usr/local/share/locale/$CODE/LC_MESSAGES/enlightenment.mo ]; then
     rebuild_std; echo
 else
     echo; beep_question   
-    read -t 10 -p "Build internationalization (i18n) support in Enlightenment? [y/N] " answer
+    read -t 10 -p "Build internationalization (i18n) support \
+in Enlightenment? [y/N] " answer
     case $answer in
       [yY] )
         rebuild_std; echo
@@ -967,9 +1035,10 @@ if [ ! -d $E22 ]; then
     exit 1
 fi
 
-for I in $EPROG; do
+for I in $EPROGRM
+do
     $TITLE "Processing ${I^} . . ."
-    cd $E22/$I && remove_prgm
+    cd $E22/$I && remove_prgrm
 done
 
 deep_clean
@@ -984,11 +1053,13 @@ echo; cowsay -d "That's All Folks!"; echo
 uninstall_all () {
 clear; echo; read -t 5 -p "Wait 5s or hit Ctrl-C to abort..."
 
-printf "\n\n$BLD%s $OFF%s\n\n" "Complete uninstallation of E22 and deps, this may take some time."
+printf "\n\n$BLD%s $OFF%s\n\n" "
+Complete uninstallation of E22 and deps, this may take some time."
 
-for I in $EPROG; do
+for I in $EPROGRM
+do
     $TITLE "Processing ${I^} . . ."
-    cd $E22/$I && remove_prgm
+    cd $E22/$I && remove_prgrm
 done
 
 deep_clean
@@ -1045,7 +1116,8 @@ fi
 echo
 
 if [ "$(pidof dropbox)" ]; then
-    printf "%s\n\n" "You might also want to delete some folders (E backups) in your Dropbox..."
+    printf "%s\n\n" "
+You might also want to delete some folders (E backups) in your Dropbox..."
 fi
 
 sudo updatedb; beep_ok
@@ -1062,7 +1134,8 @@ if [ ! -d $E22 ]; then
     exit 1
 fi
 
-printf "\n$BLD%s $OFF%s\n\n" "Satisfying dependencies under Ubuntu ${RELEASE^}..."
+printf "\n$BLD%s $OFF%s\n\n" "
+Satisfying dependencies under Ubuntu ${RELEASE^}..."
 if [ $CODE == en ]; then
     sudo apt-get install --yes $DEPS_EN
     sleep 1
@@ -1078,21 +1151,25 @@ rebuild_for_debug
 wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz
 printf "\n$BDY%s %s\n" "Launching Enlightenment into a Xephyr window..."
 printf "$BDY%s $OFF%s" "You may experience slow performance in debug mode!"
-printf "\n$BDY%s %s" "Log out of Enlightenment and close the Xephyr window when you are done."
-printf "\n$BDY%s $OFF%s\n" "Then enter q to end the debugging session (quit gdb)."
+printf "\n$BDY%s %s" "
+Log out of Enlightenment and close the Xephyr window when you are done."
+printf "\n$BDY%s $OFF%s\n" "
+Then enter q to end the debugging session (quit gdb)."
 sleep 6
 
 ##~ (See ./xdebug.sh --help for options)
 cd $HOME/Enlightenment22/enlightenment/ && ./xdebug.sh
 printf "\n$BDY%s %s\n" "Please check /var/crash/ for core dumps,"
-printf "\n$BDY%s $OFF%s\n\n" "and look for a file called .e-crashdump.txt in your home folder."
+printf "\n$BDY%s $OFF%s\n\n" "and look for a file called \
+.e-crashdump.txt in your home folder."
 }
 
 optim_go () {
 clear; printf "\n$BLD%s $OFF%s\n\n" "Proceeding to update Enlightenment 22..."
 sleep 1
 
-printf "\n$BLD%s $OFF%s\n\n" "Satisfying dependencies under Ubuntu ${RELEASE^}..."
+printf "\n$BLD%s $OFF%s\n\n" "
+Satisfying dependencies under Ubuntu ${RELEASE^}..."
 if [ $CODE == en ]; then
     sudo apt-get install --yes $DEPS_EN
     sleep 1
@@ -1109,7 +1186,8 @@ if [ -f /usr/local/share/locale/$CODE/LC_MESSAGES/enlightenment.mo ]; then
 else
     echo; beep_question  
     ##~  (BUILD TEST: Answer yes!)
-    read -t 10 -p "Build internationalization (i18n) support in Enlightenment? [y/N] " answer
+    read -t 10 -p "Build internationalization (i18n) support \
+in Enlightenment? [y/N] " answer
     case $answer in
       [yY] )
         rebuild_optim; echo
@@ -1149,11 +1227,10 @@ fi
 
 printf "\n\n$BLD%s $OFF%s\n" "SCANNING SYSTEM AND GIT REPOSITORIES..."; sleep 1
 
-if [ $RELEASE == zesty ] || [ $RELEASE == xenial ]
-then
+if [ $RELEASE == zesty ] || [ $RELEASE == xenial ]; then
     printf "\n$BDG%s $OFF%s\n\n" "Ubuntu ${RELEASE^}... OK"; sleep 1
 else
-    printf "$BDR%s $OFF%s\n\n" " UNSUPPORTED OPERATING SYSTEM."
+    printf "\n$BDR%s $OFF%s\n\n" " UNSUPPORTED OPERATING SYSTEM."
     exit 1
 fi
 
@@ -1165,7 +1242,8 @@ if [ $? == 0 ]; then
 fi
 
 if [ "$(pidof enlightenment)" ]; then
-    printf "\n$BDR%s $OFF%s\n\n" " PLEASE LOG IN TO ${DISTRIBUTOR^^} TO EXECUTE THIS SCRIPT."
+    printf "\n$BDR%s $OFF%s\n\n" "
+ PLEASE LOG IN TO ${DISTRIBUTOR^^} TO EXECUTE THIS SCRIPT."
     exit 1
 fi
 
@@ -1216,6 +1294,6 @@ fi
 
 main
 
-###~ Last edited: July 1, 2017
+###~ Last edited: July 16, 2017
 ###~ Editor: https://www.geany.org/
 ###~ Fonts: https://github.com/nathco/Office-Code-Pro
