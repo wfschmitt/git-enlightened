@@ -50,7 +50,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="16.0"
+CURVERNUM="16.1"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -759,6 +759,7 @@ cd /usr/local/bin/
 sudo rm -rf ecore*
 sudo rm -rf elementary*
 sudo rm -rf emotion_test*
+sudo rm -rf rage*
 
 cd /usr/local/etc/
 sudo rm -rf enlightenment/
@@ -858,11 +859,14 @@ sudo rm -rf rage*
 sudo rm -rf terminology*
 
 cd /usr/local/share/applications/
+sudo rm -rf rage*
 sudo sed -i '/enlightenment_filemanager/d' mimeinfo.cache
+sudo sed -i '/rage/d' mimeinfo.cache
 
 cd /usr/local/share/icons/
 sudo rm -rf emixer*
 sudo rm -rf Enlightenment*
+sudo rm -rf rage*
 
 cd /usr/local/share/gdb/
 sudo rm -rf auto-load/usr/local/lib/libeo*
@@ -1294,6 +1298,6 @@ fi
 
 main
 
-###~ Last edited: July 16, 2017
+###~ Last edited: July 17, 2017
 ###~ Editor: https://www.geany.org/
 ###~ Fonts: https://github.com/nathco/Office-Code-Pro
