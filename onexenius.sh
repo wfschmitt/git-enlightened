@@ -828,7 +828,6 @@ sudo rm -rf terminology*
 
 cd /usr/local/share/applications/
 sudo sed -i '/enlightenment_filemanager/d' mimeinfo.cache
-sudo sed -i '/rage/d' mimeinfo.cache
 
 cd /usr/local/share/icons/
 sudo rm -rf emixer*
