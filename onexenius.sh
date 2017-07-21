@@ -50,7 +50,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="16.1"
+CURVERNUM="16.2"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -123,8 +123,7 @@ TRIM=${DEPS:48}
 CLONEFL="git clone https://git.enlightenment.org/core/efl.git"
 CLONE22="git clone https://git.enlightenment.org/core/enlightenment.git"
 CLONETY="git clone https://git.enlightenment.org/apps/terminology.git"
-CLONERG="git clone https://git.enlightenment.org/apps/rage.git"
-EPROGRM="efl enlightenment terminology rage"
+EPROGRM="efl enlightenment terminology"
 
 #~#~# FUNCTIONS
 
@@ -142,8 +141,6 @@ That's weird, configuration files from a previous install of EFL/E"
         rm -rf $HOME/.cache/efreet/ &>/dev/null
         rm -rf $HOME/.cache/evas/ &>/dev/null
         rm -rf $HOME/.cache/evas_gl_common_caches/ &>/dev/null
-        rm -rf $HOME/.cache/rage/ &>/dev/null
-        rm -rf $HOME/.config/rage/ &>/dev/null
         rm -rf $HOME/.config/terminology/ &>/dev/null
         ;;
       [nN] )
@@ -155,8 +152,6 @@ That's weird, configuration files from a previous install of EFL/E"
         rm -rf $HOME/.cache/efreet/ &>/dev/null
         rm -rf $HOME/.cache/evas/ &>/dev/null
         rm -rf $HOME/.cache/evas_gl_common_caches/ &>/dev/null
-        rm -rf $HOME/.cache/rage/ &>/dev/null
-        rm -rf $HOME/.config/rage/ &>/dev/null
         rm -rf $HOME/.config/terminology/ &>/dev/null
         ;;
     esac
@@ -187,17 +182,6 @@ binary dependencies."
 Answer yes to i18n support)."
     sleep 1 && printf "$BLD%s $OFF%s\n\n" "—  Or press Ctrl-C to quit."
     read INPUT
-fi
-}
-
-new_prgrm () {
-sleep 1
-if [ ! -d $E22/rage/ ]; then
-    printf "\n$BDY%s %s\n" "
-Since version 16.0, ONEXENIUS now includes one more Enlightenment program."
-    printf "$BDY%s $OFF%s\n\n" "
-Please relaunch the script and select option #1 to build it."
-    exit 1
 fi
 }
 
@@ -291,7 +275,7 @@ done
 ls_dir () {
 COUNT=$(ls -d */ | wc -l)
 
-if [ $COUNT == 4 ]; then
+if [ $COUNT == 3 ]; then
     printf "$BDG%s $OFF%s\n\n" "All programs have been downloaded successfully."
     sleep 2
 elif [ $COUNT == 0 ]; then
@@ -300,7 +284,7 @@ elif [ $COUNT == 0 ]; then
     exit 1
 else
     printf "\n$BDY%s $OFF%s\n\n" "
- WARNING: ONLY $COUNT OF 4 PROGRAMS HAVE BEEN DOWNLOADED."
+ WARNING: ONLY $COUNT OF 3 PROGRAMS HAVE BEEN DOWNLOADED."
     sleep 6
 fi
 }
@@ -457,8 +441,6 @@ done
 }
 
 rebuild_std () {
-new_prgrm
-
 for I in $EPROGRM
 do
     $TITLE "Processing ${I^} . . ."
@@ -507,8 +489,6 @@ done
 }
 
 rebuild_no_nls () {
-new_prgrm
-
 for I in $EPROGRM
 do
     $TITLE "Processing ${I^} . . ."
@@ -557,8 +537,6 @@ done
 }
 
 rebuild_optim () {
-new_prgrm
-
 export CFLAGS="-O3 -ffast-math -march=native"
 export CXXFLAGS="-O3 -ffast-math -march=native"
 
@@ -612,8 +590,6 @@ done
 }
 
 rebuild_optim_no_nls () {
-new_prgrm
-
 export CFLAGS="-O3 -ffast-math -march=native"
 export CXXFLAGS="-O3 -ffast-math -march=native"
 
@@ -662,9 +638,7 @@ do
 done
 }
 
-rebuild_for_debug () {
-new_prgrm	
-
+rebuild_for_debug () {	
 export LC_ALL=C
 export CFLAGS="-g -ggdb3"
 export CXXFLAGS="-g -ggdb3"
@@ -740,7 +714,6 @@ deep_clean () {
 echo; printf "\n$BLD%s $OFF%s\n\n" "Deeper cleaning..."; sleep 1
 
 cd $E22
-sudo rm -rf rage/
 sudo rm -rf terminology/
 sudo rm -rf enlightenment/
 sudo rm -rf efl/
@@ -751,15 +724,12 @@ rm -rf .e/
 rm -rf .elementary/
 rm -rf .cache/efreet/
 rm -rf .cache/evas_gl_common_caches/
-rm -rf .cache/rage/
-rm -rf .config/rage/
 rm -rf .config/terminology/
 
 cd /usr/local/bin/
 sudo rm -rf ecore*
 sudo rm -rf elementary*
 sudo rm -rf emotion_test*
-sudo rm -rf rage*
 
 cd /usr/local/etc/
 sudo rm -rf enlightenment/
@@ -821,7 +791,6 @@ sudo rm -rf libeolian*
 sudo rm -rf libephysics*
 sudo rm -rf libethumb*
 sudo rm -rf libevas*
-sudo rm -rf rage*
 
 cd /usr/local/lib/cmake/
 sudo rm -rf Ecore*
@@ -855,18 +824,15 @@ sudo rm -rf enlightenment*
 sudo rm -rf eo*
 sudo rm -rf ethumb*
 sudo rm -rf evas*
-sudo rm -rf rage*
 sudo rm -rf terminology*
 
 cd /usr/local/share/applications/
-sudo rm -rf rage*
 sudo sed -i '/enlightenment_filemanager/d' mimeinfo.cache
 sudo sed -i '/rage/d' mimeinfo.cache
 
 cd /usr/local/share/icons/
 sudo rm -rf emixer*
 sudo rm -rf Enlightenment*
-sudo rm -rf rage*
 
 cd /usr/local/share/gdb/
 sudo rm -rf auto-load/usr/local/lib/libeo*
@@ -925,7 +891,6 @@ printf "\n\n$BLD%s $OFF%s\n\n" "Fetching git code..."
 $CLONEFL; echo
 $CLONE22; echo
 $CLONETY; echo
-$CLONERG; echo
 
 ls_dir
 
