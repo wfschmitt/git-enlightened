@@ -6,7 +6,8 @@
 #~ GIT master version of Enlightenment 0.22 (aka E22) on Ubuntu Xenial Xerus
 #~ and Zesty Zapus; or helps you perform a clean uninstall of E22 GIT.
 
-#~ Please note that onexenius.sh is not intended for use inside containers.
+#~ Please note that onexenius.sh is not intended for use inside containers,
+#~ but should run just fine in an Ubuntu VM inside VirtualBox.
 
 #~ To execute the script:
 #~ 1. Open Terminal (uncheck "Limit scrollback to" in Profile Preferences)
@@ -50,7 +51,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="16.2"
+CURVERNUM="16.3"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -92,7 +93,7 @@ libpam0g-dev libpoppler-cpp-dev libpoppler-dev \
 libpoppler-private-dev libproxy-dev libpulse-dev libraw-dev \
 librsvg2-dev libscim-dev libsndfile1-dev libspectre-dev \
 libssl-dev libsystemd-dev libtiff5-dev libtool libudev-dev \
-libudisks2-dev libunibreak-dev libvlc-dev libwebp-dev \
+libudisks2-dev libunibreak-dev libunwind-dev libvlc-dev libwebp-dev \
 libxcb-keysyms1-dev libxcursor-dev libxine2-dev libxinerama-dev \
 libxkbfile-dev libxrandr-dev libxss-dev libxtst-dev \
 linux-tools-common texlive-base unity-greeter-badges \
@@ -112,7 +113,7 @@ liblz4-dev libmount-dev libpam0g-dev libpoppler-cpp-dev \
 libpoppler-dev libpoppler-private-dev libproxy-dev libpulse-dev \
 libraw-dev librsvg2-dev libscim-dev libsndfile1-dev \
 libspectre-dev libssl-dev libsystemd-dev libtiff5-dev libtool \
-libudev-dev libudisks2-dev libunibreak-dev libvlc-dev \
+libudev-dev libudisks2-dev libunibreak-dev libunwind-dev libvlc-dev \
 libwebp-dev libxcb-keysyms1-dev libxcursor-dev libxine2-dev \
 libxinerama-dev libxkbfile-dev libxrandr-dev libxss-dev \
 libxtst-dev linux-tools-common unity-greeter-badges \
@@ -1262,6 +1263,6 @@ fi
 
 main
 
-###~ Last edited: July 21, 2017
+###~ Last edited: July 30, 2017
 ###~ Editor: https://www.geany.org/
 ###~ Fonts: https://github.com/nathco/Office-Code-Pro
