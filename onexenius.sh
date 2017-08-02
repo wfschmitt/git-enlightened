@@ -1263,6 +1263,3 @@ fi
 
 main
 
-###~ Last edited: July 30, 2017
-###~ Editor: https://www.geany.org/
-###~ Fonts: https://github.com/nathco/Office-Code-Pro
