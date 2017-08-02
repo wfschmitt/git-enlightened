@@ -93,11 +93,11 @@ libpam0g-dev libpoppler-cpp-dev libpoppler-dev \
 libpoppler-private-dev libproxy-dev libpulse-dev libraw-dev \
 librsvg2-dev libscim-dev libsndfile1-dev libspectre-dev \
 libssl-dev libsystemd-dev libtiff5-dev libtool libudev-dev \
-libudisks2-dev libunibreak-dev libunwind-dev libvlc-dev libwebp-dev \
-libxcb-keysyms1-dev libxcursor-dev libxine2-dev libxinerama-dev \
-libxkbfile-dev libxrandr-dev libxss-dev libxtst-dev \
-linux-tools-common texlive-base unity-greeter-badges \
-valgrind wmctrl"
+libudisks2-dev libunibreak-dev libunwind-dev libvlc-dev \
+libwebp-dev libxcb-keysyms1-dev libxcursor-dev libxine2-dev \
+libxinerama-dev libxkbfile-dev libxrandr-dev libxss-dev \
+libxtst-dev linux-tools-common texlive-base \
+unity-greeter-badges valgrind wmctrl"
 
 TRIM_EN=${DEPS_EN:46}
 
@@ -113,11 +113,11 @@ liblz4-dev libmount-dev libpam0g-dev libpoppler-cpp-dev \
 libpoppler-dev libpoppler-private-dev libproxy-dev libpulse-dev \
 libraw-dev librsvg2-dev libscim-dev libsndfile1-dev \
 libspectre-dev libssl-dev libsystemd-dev libtiff5-dev libtool \
-libudev-dev libudisks2-dev libunibreak-dev libunwind-dev libvlc-dev \
-libwebp-dev libxcb-keysyms1-dev libxcursor-dev libxine2-dev \
-libxinerama-dev libxkbfile-dev libxrandr-dev libxss-dev \
-libxtst-dev linux-tools-common unity-greeter-badges \
-texlive-base valgrind wmctrl"
+libudev-dev libudisks2-dev libunibreak-dev libunwind-dev \
+libvlc-dev libwebp-dev libxcb-keysyms1-dev libxcursor-dev \
+libxine2-dev libxinerama-dev libxkbfile-dev libxrandr-dev \
+libxss-dev libxtst-dev linux-tools-common \
+unity-greeter-badges texlive-base valgrind wmctrl"
 
 TRIM=${DEPS:48}
 
@@ -1262,4 +1262,3 @@ fi
 }
 
 main
-
