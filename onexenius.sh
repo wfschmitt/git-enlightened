@@ -8,7 +8,7 @@
 
 #~ To execute the script:
 #~ 1. Open Terminal (uncheck "Limit scrollback to" in Profile Preferences)
-#~ 2. Change to the download folder
+#~ 2. Change to the folder containing this script
 #~ 3. Make the script executable with chmod +x
 #~ 4. Run it with ./onexenius.sh
 
@@ -51,7 +51,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="16.3"
+CURVERNUM="16.4"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
