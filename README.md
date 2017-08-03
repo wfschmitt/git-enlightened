@@ -9,7 +9,7 @@ Getting started:
 
 Click the green "Clone or download" button.
 
-If you choose to clone this repository, first make sure the git program is installed
+If you choose to clone this repository, first make sure that the git program is installed
 on your system,
 then run the following command in Terminal:
 
