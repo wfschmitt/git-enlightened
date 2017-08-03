@@ -1089,6 +1089,10 @@ if [ "$(pidof dropbox)" ]; then
 You might also want to delete some folders (E backups) in your Dropbox..."
 fi
 
+if [ -d $HOME/git-enlightened/ ]; then
+    rm -rf $HOME/git-enlightened/
+fi
+
 sudo updatedb; beep_ok
 printf "\n$BDG%s $OFF%s\n\n" "Uninstall Complete."
 }
