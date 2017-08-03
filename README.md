@@ -13,6 +13,8 @@ then run the following command in Terminal:
 
 git clone https://github.com/batden/git-enlightened.git
 
+The installation instructions are contained in the script itself.
+
 To stay up to date with the latest repository changes, cd to the git-enlightened folder
 then run:
 
