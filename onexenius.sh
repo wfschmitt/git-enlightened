@@ -51,7 +51,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="16.4"
+CURVERNUM="16.5"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -229,8 +229,8 @@ fi
 bin_deps ()  {
 sudo apt-get update && sudo apt-get dist-upgrade --yes
 
-if [ $RELEASE != zesty ]; then
-    sudo apt-get install --yes libopenjpeg-dev
+if [ $RELEASE == zesty ]; then
+    sudo apt-get install --yes libopenjp2-7-dev
 fi
 
 if [ ! -f $DOCUDIR/installed.txt ]; then
@@ -1058,8 +1058,8 @@ sudo apt-get autoremove --purge
 sudo dpkg --purge $(COLUMNS=200 dpkg -l | grep "^rc" | tr -s ' ' | \
 cut -d ' ' -f 2) &>/dev/null
 
-if [ $RELEASE != zesty ]; then
-    sudo apt-get autoremove --yes libopenjpeg-dev &>/dev/null
+if [ $RELEASE == zesty ]; then
+    sudo apt-get autoremove --yes libopenjp2-7-dev &>/dev/null
 fi
 
 printf "\n%s\n\n" "[Output of ubuntu-support-status]"
