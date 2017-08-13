@@ -22,3 +22,5 @@ To stay up to date with the latest repository changes, cd to the git-enlightened
 then simply run:
 
 git pull
+
+Feel free to use this script as you see fit.
