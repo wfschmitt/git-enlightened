@@ -9,7 +9,7 @@ The installation instructions are contained in the script itself.
 
 **Getting started**
 
-Click the green "Clone or download" button.
+Click the "Clone or download" green button.
 
 If you choose to clone this repository, first make sure that the git program is installed
 on your system,
