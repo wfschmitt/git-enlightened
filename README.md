@@ -15,12 +15,15 @@ Click the green "Clone or download" button.
 If you choose to clone this repository, first make sure that the git program is installed
 on your system,
 then run the following command in Terminal:
-
+```
 git clone https://github.com/batden/git-enlightened.git
+```
 
 To stay up to date with the latest repository changes, cd to the git-enlightened folder
 then simply run:
+```
 
 git pull
+```
 
 Feel free to use this script as you see fit.
