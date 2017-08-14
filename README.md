@@ -8,7 +8,7 @@ and Zesty Zapus; or helps you perform a clean uninstall of E22 GIT.
 The installation instructions are contained in the script itself
 (open onexenius.sh in a text editor like Gedit).
 
-Getting started:
+**Getting started**
 
 Click the green "Clone or download" button.
 
