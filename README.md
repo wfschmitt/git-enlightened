@@ -22,7 +22,6 @@ git clone https://github.com/batden/git-enlightened.git
 To stay up to date with the latest repository changes, cd to the git-enlightened folder
 then simply run:
 ```
-
 git pull
 ```
 
