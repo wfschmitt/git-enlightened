@@ -51,7 +51,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="16.5"
+CURVERNUM="16.6"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -581,7 +581,7 @@ Rebuilding $I with optimizations and nls support enabled..."
     ##~  ——your terminal may appear to be frozen, waiting a few
     ##~  minutes will allow the task to complete)
 
-    #~echo; make dist; echo
+    #~echo; make distcheck; echo
 
     $TITLE "Processing ${I^} . . ."
     $SMIL
