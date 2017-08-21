@@ -51,7 +51,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="16.6"
+CURVERNUM="16.7"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -345,7 +345,8 @@ do
             --enable-systemd --enable-xine --enable-xinput22
             ;;
           enlightenment)
-            $GEN --enable-mount-eeze --disable-wl-desktop-shell
+            $GEN --enable-mount-eeze --disable-geolocation \
+            --disable-wl-desktop-shell
             ;;
           *) 
             $GEN
@@ -400,8 +401,8 @@ do
             --enable-xinput22 --disable-harfbuzz --disable-nls
             ;;
           enlightenment)
-            $GEN --enable-mount-eeze --disable-nls \
-            --disable-wl-desktop-shell
+            $GEN --enable-mount-eeze --disable-geolocation \
+            --disable-nls --disable-wl-desktop-shell
             ;;
           terminology)
             $GEN --disable-nls
@@ -461,7 +462,8 @@ do
             --enable-systemd --enable-xine --enable-xinput22 
             ;;
           enlightenment)
-            $GEN --enable-mount-eeze --disable-wl-desktop-shell
+            $GEN --enable-mount-eeze --disable-geolocation \
+            --disable-wl-desktop-shell
             ;;
           *)
             $GEN
@@ -509,8 +511,8 @@ do
             --enable-xinput22 --disable-harfbuzz --disable-nls 
             ;;
           enlightenment)
-            $GEN --enable-mount-eeze --disable-nls \
-            --disable-wl-desktop-shell
+            $GEN --enable-mount-eeze --disable-geolocation \
+            --disable-nls --disable-wl-desktop-shell
             ;;
           terminology)
             $GEN --disable-nls
@@ -559,8 +561,8 @@ Rebuilding $I with optimizations and nls support enabled..."
             --with-profile=release
             ;;
           enlightenment)
-            $GEN --enable-mount-eeze --disable-wl-desktop-shell \
-            --with-profile=FAST_PC
+            $GEN --enable-mount-eeze --disable-geolocation \
+            --disable-wl-desktop-shell --with-profile=FAST_PC
             ;;
           *)
             $GEN
@@ -611,7 +613,7 @@ do
             --with-profile=release
             ;;
           enlightenment)
-            $GEN --enable-mount-eeze --disable-nls \
+            $GEN --enable-mount-eeze --disable-geolocation --disable-nls \
             --disable-wl-desktop-shell --with-profile=FAST_PC
             ;;
           terminology)
@@ -670,7 +672,7 @@ do
             --disable-nls
             ;;
           enlightenment)
-            $GEN --enable-mount-eeze --disable-nls \
+            $GEN --enable-mount-eeze --disable-geolocation --disable-nls \
             --disable-wl-desktop-shell
             ;;
           terminology)
