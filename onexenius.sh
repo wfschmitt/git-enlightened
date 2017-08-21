@@ -1202,10 +1202,16 @@ fi
 
 printf "\n\n$BLD%s $OFF%s\n" "SCANNING SYSTEM AND GIT REPOSITORIES..."; sleep 1
 
-if [ $RELEASE == zesty ] || [ $RELEASE == xenial ]; then
-    printf "\n$BDG%s $OFF%s\n\n" "Ubuntu ${RELEASE^}... OK"; sleep 1
-else
-    printf "\n$BDR%s $OFF%s\n\n" " UNSUPPORTED OPERATING SYSTEM."
+if systemd-detect-virt -q --container; then
+    printf "\n$BDR%s %s\n" "
+ ONEXENIUS.SH IS NOT INTENDED FOR USE INSIDE CONTAINERS."
+    printf "$BDR%s $OFF%s\n\n" " SCRIPT ABORTED."
+    exit 1
+fi
+
+if [ $? -ne 0 ]; then
+    printf "\n$BDR%s %s\n" " REMOTE HOST IS UNREACHABLE——TRY AGAIN LATER"
+    printf "$BDR%s $OFF%s\n\n" " OR VERIFY YOUR NETWORK CONNECTION."
     exit 1
 fi
 
