@@ -1001,7 +1001,7 @@ clear; echo; read -t 5 -p "Wait 5s or hit Ctrl-C to abort..."
 printf "\n\n$BLD%s $OFF%s\n\n" "Proceeding to uninstall Enlightenment 22..."
 
 if [ ! -d $E22 ]; then
-    printf "\n$BDR%s $OFF%s\n" " NOTHING TO REMOVE!"
+    printf "\n$BDR%s %s\n" " NOTHING TO REMOVE!"
     printf "$BDR%s $OFF%s\n\n" " PLEASE SELECT ANOTHER OPTION."
     exit 1
 fi
@@ -1104,7 +1104,7 @@ clear; printf "\n$BLD%s $OFF%s\n\n" "Proceeding to update Enlightenment 22..."
 sleep 1
 
 if [ ! -d $E22 ]; then
-    printf "\n$BDR%s $OFF%s\n" " NOTHING TO DEBUG!"
+    printf "\n$BDR%s %s\n" " NOTHING TO DEBUG!"
     printf "$BDR%s $OFF%s\n\n" " PLEASE SELECT ANOTHER OPTION."
     exit 1
 fi
@@ -1125,7 +1125,7 @@ echo
 rebuild_for_debug
 wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz
 printf "\n$BDY%s %s\n" "Launching Enlightenment into a Xephyr window..."
-printf "$BDY%s $OFF%s" "You may experience slow performance in debug mode!"
+printf "$BDY%s %s" "You may experience slow performance in debug mode!"
 printf "\n$BDY%s %s" "
 Log out of Enlightenment and close the Xephyr window when you are done."
 printf "\n$BDY%s $OFF%s\n" "
