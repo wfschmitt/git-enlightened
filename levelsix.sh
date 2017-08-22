@@ -1,7 +1,6 @@
 #!/bin/bash
 
 #~ WARNING: ALPHA QUALITY!
-#~ YOU USE THE SCRIPT AT YOUR OWN RISK AND CANNOT EXPECT ANY SUPPORT.
 
 ###~ LEVELSIX.SH
 #~ This script allows you to easily download, install, update the GIT master
@@ -53,7 +52,7 @@ GEN="./autogen.sh --prefix=$PREFIX"
 SMIL="sudo make install"
 RELEASE=$(rpm -E %fedora)
 
-CURVERNUM=1.8
+CURVERNUM=0.8
 
 DEPS="automake bluez-libs-devel bullet-devel ccache check-devel cowsay \
 curl-devel dbus-devel doxygen fontconfig-devel freetype-devel fribidi-devel \
