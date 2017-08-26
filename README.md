@@ -23,5 +23,5 @@ and run:
 ```
 git pull
 ```
-
+That's it.
 Feel free to use this script as you see fit.
