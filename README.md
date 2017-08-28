@@ -9,11 +9,11 @@ The installation instructions are contained in the script itself.
 
 **Getting started**
 
-Click the "Clone or download" green button.
+Click the green "Clone or download" button to see the options.
 
 If you choose to clone this repository, first make sure that the git program is installed
 on your system,
-then run the following command in Terminal:
+then run the following command in Terminal (paste the URL):
 ```
 git clone https://github.com/batden/git-enlightened.git
 ```
