@@ -51,7 +51,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="16.7"
+CURVERNUM="16.8"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -1224,7 +1224,8 @@ fi
 
 dpkg -l | egrep -w 'e17|e20|enlightenment' &>/dev/null
 if [ $? == 0 ]; then
-    printf "\n$BDR%s %s\n" " ANOTHER VERSION OF ENLIGHTENMENT IS INSTALLED."
+    printf "\n$BDR%s %s\n" " ANOTHER VERSION OF ENLIGHTENMENT IS ALREADY INSTALLED AND"
+    printf "\n$BDR%s %s\n" " THESE TWO VERSIONS ARE NOT COMPATIBLE WITH EACH OTHER."
     printf "$BDR%s $OFF%s\n\n" " SCRIPT ABORTED."
     exit 1
 fi
