@@ -1040,6 +1040,8 @@ logger -i "onexenius.sh: Enlightenment 22 was successfully uninstalled."
 $TITLE "Processing Ubuntu Packages . . ."
 echo; printf "\n$BLD%s $OFF%s\n\n" "Removing binary dependencies..."
 
+#~ (Think twice before proceeding with the removal of these packages!
+#~  If you're in doubt, take a screenshot for future reference)
 if [ $CODE == en ]; then
     sudo apt-get autoremove $TRIM_EN
     sleep 1
