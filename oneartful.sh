@@ -397,6 +397,135 @@ update_go () {
   echo; cowsay -f www "That's All Folks!"; echo
 }
 
+remov_eprog_at () {
+  for I in $PROG_AT; do
+    sudo make uninstall &>/dev/null
+    make maintainer-clean &>/dev/null
+  done
+}
+
+remov_eprog_mn () {
+  for I in $PROG_MN; do
+    sudo ninja -C build uninstall &>/dev/null
+    rm -rf build &>/dev/null
+  done
+  }
+
+uninstall_e22 () {
+  clear; echo; read -t 3 -p "Wait 3s or hit Ctrl-C to abort..."
+
+  printf "\n\n$BRN%s %s\n" "* Proceeding to uninstall Enlightenment 22 *"
+  printf "$BRN%s $OFF%s\n\n" "* Please be patient... *"
+
+  for I in $PROG_AT; do
+    cd $E22/$I && remov_eprog_at
+  done
+
+  for I in $PROG_MN; do
+    cd $E22/$I && remov_eprog_mn
+  done
+
+  cd $HOME
+  rm -rf enlightenment22/
+  rm -rf .e/
+  rm -rf .elementary/
+  rm -rf .cache/efreet/
+  rm -rf .cache/evas_gl_common_caches/
+
+  cd /usr/local/etc/
+  sudo rm -rf enlightenment/
+
+  cd /usr/local/include/
+  sudo rm -rf *-1
+  sudo rm -rf enlightenment/
+
+  cd /usr/local/lib/
+  sudo rm -rf ecore*
+  sudo rm -rf edje*
+  sudo rm -rf eeze*
+  sudo rm -rf efl*
+  sudo rm -rf efreet*
+  sudo rm -rf elementary*
+  sudo rm -rf emotion*
+  sudo rm -rf ethumb*
+  sudo rm -rf evas*
+  sudo rm -rf x86*
+
+  cd /usr/local/lib/cmake/
+  sudo rm -rf Ecore*
+  sudo rm -rf Edje*
+  sudo rm -rf Eet*
+  sudo rm -rf Eeze*
+  sudo rm -rf Efl*
+  sudo rm -rf Efreet*
+  sudo rm -rf Eina*
+  sudo rm -rf Eio*
+  sudo rm -rf Eldbus*
+  sudo rm -rf Elementary*
+  sudo rm -rf Elua*
+  sudo rm -rf Emile*
+  sudo rm -rf Emotion*
+  sudo rm -rf Eo*
+  sudo rm -rf Ethumb*
+  sudo rm -rf Evas*
+
+  cd /usr/local/share/
+  sudo rm -rf dbus*
+  sudo rm -rf ecore*
+  sudo rm -rf edje*
+  sudo rm -rf eeze*
+  sudo rm -rf efreet*
+  sudo rm -rf elementary*
+  sudo rm -rf elua*
+  sudo rm -rf embryo*
+  sudo rm -rf emotion*
+  sudo rm -rf enlightenment*
+  sudo rm -rf eo*
+  sudo rm -rf eolian*
+  sudo rm -rf ephoto*
+  sudo rm -rf ethumb*
+  sudo rm -rf evas*
+  sudo rm -rf rage*
+  sudo rm -rf terminology*
+
+  cd /usr/local/share/icons/
+  sudo rm -rf Enlightenment-X
+
+  cd /usr/share/
+  sudo rm -rf xsessions/enlightenment.desktop
+  cd /usr/share/dbus-1/services/
+  sudo rm -rf org.enlightenment.Ethumb.service
+
+  cd $HOME
+
+  find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I; do
+    if [ -f "$I/efl.mo" ]; then
+      cd "$I" && sudo rm -rf efl*
+    fi
+  done
+
+  find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I; do
+    if [ -f "$I/enlightenment.mo" ]; then
+      cd "$I" && sudo rm -rf enlightenment*
+    fi
+  done
+
+  find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I; do
+    if [ -f "$I/ephoto.mo" ]; then
+      cd "$I" && sudo rm -rf ephoto*
+    fi
+  done
+
+  find /usr/local/share/locale/*/LC_MESSAGES/ 2>/dev/null | while read -r I; do
+    if [ -f "$I/terminology.mo" ]; then
+      cd "$I" && sudo rm -rf terminology*
+    fi
+  done
+
+sudo updatedb
+echo; cowsay -d "That's All Folks!"; echo
+}
+
 main () {
   trap '{ printf "\n$BDR%s $OFF%s\n\n" "KEYBOARD INTERRUPT."; exit 130; }' INT
 
