@@ -122,7 +122,7 @@ sel_menu () {
   if [ $INPUT -lt 1 ]; then
     printf "\n$BDG%s %s\n\n" "1. Install Enlightenment 22."
     printf "$BDG%s $OFF%s\n\n" "2. Update my E22 installation."
-    printf "$BRN%s %s\n\n" "3. Uninstall E22 programs only."
+    printf "$BRN%s %s\n\n" "3. Uninstall E22 programs."
     printf "$BRN%s $OFF%s\n\n" "4. Uninstall E22 programs AND binary dependencies."
     printf "$BDY%s %s\n" "5. Update and rebuild E22 for debugging"
     printf "$BDY%s %s\n\n" "   (Make sure default E theme is applied)."
