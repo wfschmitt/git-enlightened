@@ -490,7 +490,7 @@ uninstall_e22 () {
   sudo rm -rf terminology*
 
   cd /usr/local/share/icons/
-  sudo rm -rf Enlightenment-X
+  sudo rm -rf Enlightenment-X/
 
   cd /usr/share/
   sudo rm -rf xsessions/enlightenment.desktop
