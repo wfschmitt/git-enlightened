@@ -25,11 +25,12 @@
 # Please remove thoroughly any previous installation of EFL/Enlightenment
 # (track down and delete any leftover files) before running my script.
 
-# Once installed, you can update your Enlightenment Desktop whenever you
-# want to——I do this on a daily basis. However, I recommend doing a
-# complete uninstall (you may want to keep the hidden ccache folder)
-# and reinstall of E22 every three weeks or so
-# for an optimal user experience.
+#~ Once installed, you can update your Enlightenment Desktop whenever you
+#~ want to——I do this on a daily basis. However, because software gains
+#~ entropy over time, I highly recommend doing a complete uninstall
+#~ (you may want to keep the hidden ccache folder)
+#~ and reinstall of E22 every three weeks or so
+#~ for an optimal user experience.
 
 # ONEARTFUL is written by batden@sfr.fr, feel free to use this script
 # as you see fit.
