@@ -319,7 +319,7 @@ do_bsh_alias () {
   # Enable parallel build.
   NCPU="$(getconf _NPROCESSORS_ONLN)"
   NJOBS="$((NCPU*2))"
-  export MAKE="make -j ${NJOBS}"
+  export MAKE="make -j${NJOBS}"
 
 `EOF`
 
