@@ -327,6 +327,23 @@ do_bsh_alias () {
   fi
 }
 
+get_meson () {
+  which meson
+  if [ "$?" -ne 0 ]; then
+    sudo apt-get install ninja-build python3-pip
+  fi
+
+  pip3 install --user meson
+  if [ "$?" == 0 ]; then
+    echo "export PATH=$PATH:$HOME/.local/bin" >> $HOME/.bash_aliases
+    source $HOME/.bash_aliases
+  else
+    printf "\n$BDR%s %s\n" "OOPS! SOMETHING WENT WRONG."
+    printf "$BDR%s $OFF%s\n\n" "SCRIPT ABORTED."
+    exit 1
+  fi
+}
+
 install_go () {
   clear; printf "\n$BDG%s $OFF%s\n\n" "* PROCEEDING TO INSTALL ENLIGHTENMENT 22 *"
 
@@ -339,6 +356,7 @@ install_go () {
   fi
 
   do_bsh_alias
+  get_meson
 
   cd $HOME; mkdir -p $E22; cd $E22
 
