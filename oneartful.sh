@@ -60,7 +60,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="0.6"
+CURVERNUM="0.7"
 
 # Folder names lookup.
 DOCUDIR=$(test -f ${XDG_CONFIG_HOME:-~/.config}/user-dirs.dirs && \
@@ -194,7 +194,7 @@ ls_dir () {
   fi
 }
 
-build_plain () {
+build_def () {
   for I in $PROG_AT; do
     $WTITLE "Processing ${I^} . . ."
     cd $E22/$I
@@ -224,7 +224,7 @@ build_plain () {
   done
 }
 
-rebuild_plain () {
+rebuild_def () {
   for I in $PROG_AT; do
     $WTITLE "Processing ${I^} . . ."
     cd $E22/$I
@@ -371,7 +371,7 @@ install_go () {
   ls_dir
 
   $WTITLE "Processing Enlightenment Programs . . ."
-  build_plain
+  build_def
 
   $WTITLE "Finalizing Installation . . ."
   printf "\n%s\n\n" "Almost done..."
@@ -409,7 +409,7 @@ update_go () {
   fi
 
   $WTITLE "Processing Enlightenment Programs . . ."
-  rebuild_plain
+  rebuild_def
 
   sudo updatedb
   $WTITLE "Update Complete."
