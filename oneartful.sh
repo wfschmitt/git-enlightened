@@ -344,6 +344,7 @@ get_meson () {
 
 install_go () {
   clear; printf "\n$BDG%s $OFF%s\n\n" "* PROCEEDING TO INSTALL ENLIGHTENMENT 22 *"
+  do_bsh_alias
 
   if grep -q ppa /var/lib/apt/lists/*ppa* &>/dev/null; then
     bin_deps
@@ -353,7 +354,6 @@ install_go () {
     bin_deps
   fi
 
-  do_bsh_alias
   get_meson
 
   cd $HOME; mkdir -p $E22; cd $E22
