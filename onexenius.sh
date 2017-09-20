@@ -341,7 +341,7 @@ do
     #~ (Configure)
         case $I in
           efl)
-            $GEN --disable-cxx-bindings --enable-harfbuzz \
+            $GEN --enable-cxx-bindings --enable-harfbuzz \
             --enable-image-loader-webp --enable-multisense \
             --enable-systemd --enable-xine --enable-xinput22
             ;;
