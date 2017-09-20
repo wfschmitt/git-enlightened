@@ -317,9 +317,7 @@ do_bsh_alias () {
   export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
   # Enable parallel build.
-  NCPU="$(getconf _NPROCESSORS_ONLN)"
-  NJOBS="$((NCPU*2))"
-  export MAKE="make -j${NJOBS}"
+export MAKE="make -j$(($(getconf _NPROCESSORS_ONLN)*2))"
 
 `EOF`
 
