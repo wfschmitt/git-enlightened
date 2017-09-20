@@ -52,7 +52,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="16.8"
+CURVERNUM="16.9"
 
 #~ (Color output)
 BLD="\e[1m"     #~ (Bold text)
@@ -72,7 +72,7 @@ export CPPFLAGS=-I/usr/local/include
 export LDFLAGS=-L/usr/local/lib
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
-#~ (Load balancing for multi-core systems)
+#~ (Enable parallel build)
 export MAKE="make -j$(($(getconf _NPROCESSORS_ONLN)*2))"
 
 #~ (Folder names lookup)
