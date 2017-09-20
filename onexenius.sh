@@ -73,9 +73,7 @@ export LDFLAGS=-L/usr/local/lib
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
 #~ (Load balancing for multi-core systems)
-NCPU="$(getconf _NPROCESSORS_ONLN)"
-NJOBS="$((NCPU*2))"
-export MAKE="make -j $NJOBS"
+export MAKE="make -j$(($(getconf _NPROCESSORS_ONLN)*2))"
 
 #~ (Folder names lookup)
 DOCUDIR=$(test -f ${XDG_CONFIG_HOME:-~/.config}/user-dirs.dirs && \
