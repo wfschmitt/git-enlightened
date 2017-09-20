@@ -326,7 +326,7 @@ do_bsh_alias () {
 }
 
 get_meson () {
-  which meson
+  which meson &>/dev/null
   if [ "$?" -ne 0 ]; then
     sudo apt-get install ninja-build python3-pip
   fi
