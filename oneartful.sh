@@ -319,6 +319,7 @@ do_bsh_alias () {
   # Enable parallel build.
   export MAKE="make -j$(($(getconf _NPROCESSORS_ONLN)*2))"
 
+  # Set the PATH environment variable if necessary.
 `EOF`
 
   source $HOME/.bash_aliases
@@ -333,7 +334,7 @@ get_meson () {
 
   pip3 install --user meson
   if [ "$?" == 0 ]; then
-    echo 'export PATH=$HOME/.local/bin:$PATH' >> $HOME/.bash_aliases
+    echo -e '  export PATH=$HOME/.local/bin:$PATH' >> $HOME/.bash_alias
     source $HOME/.bash_aliases
   else
     printf "\n$BDR%s %s\n" "OOPS! SOMETHING WENT WRONG."
