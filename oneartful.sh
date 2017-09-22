@@ -334,7 +334,7 @@ get_meson () {
 
   pip3 install --user meson
   if [ "$?" == 0 ]; then
-    echo -e '  export PATH=$HOME/.local/bin:$PATH' >> $HOME/.bash_alias
+    echo -e '  export PATH=$HOME/.local/bin:$PATH' >> $HOME/.bash_aliases
     source $HOME/.bash_aliases
   else
     printf "\n$BDR%s %s\n" "OOPS! SOMETHING WENT WRONG."
