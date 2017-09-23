@@ -390,8 +390,11 @@ install_go () {
   printf "\n$BDY%s %s" "Update checking——You can disable this feature because it serves no useful purpose."
   printf "\n$BDY%s $OFF%s\n\n\n" "Network management support——Do not install Connman!"
 
-  echo; cowsay "No Reboot Required... That's All Folks!"; echo
-  # (Then log out and select Enlightenment on the login screen)
+  if [ $RELEASE == artful ]; then
+     echo; cowsay "Now reboot your computer then select Enlightenment on the login screen... That's All Folks!"; echo
+  else
+     echo; cowsay "No Reboot Required... That's All Folks!"; echo
+  fi
 }
 
 update_go () {
