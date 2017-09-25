@@ -38,17 +38,16 @@
 # Please consider sending me a tip via https://www.paypal.me/PJGuillaumie
 # Cheers!
 
-# VARIABLES
-# ---------
+# LOCAL VARIABLES
+# ---------------
 
-# Color output.
-BLD="\e[1m"
-BRN="\e[0;31m"
-BDR="\e[1;31m"
-BDG="\e[1;32m"
-BDY="\e[1;33m"
-BDP="\e[0;35m"
-OFF="\e[0m"
+BLD="\e[1m"    # (Bold text)
+BRN="\e[0;31m" # (Brown text)
+BDR="\e[1;31m" # (Bold red text)
+BDG="\e[1;32m" # (Bold green text)
+BDY="\e[1;33m" # (Bold yellow text)
+BDP="\e[0;35m" # (Bold purple text)
+OFF="\e[0m"    # (Turn off ansi colors)
 
 PREFIX=/usr/local
 E22="$HOME/enlightenment22"
@@ -317,6 +316,7 @@ do_bsh_alias () {
   export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
   # Enable parallel build.
+  # (Comment out the following line if you get build errors with others projects)
   export MAKE="make -j$(($(getconf _NPROCESSORS_ONLN)*2))"
 
   # Set the PATH environment variable if necessary.
