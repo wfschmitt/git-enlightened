@@ -59,7 +59,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="0.7"
+CURVERNUM="0.8"
 
 # Folder names lookup.
 DOCUDIR=$(test -f ${XDG_CONFIG_HOME:-~/.config}/user-dirs.dirs && \
@@ -334,8 +334,10 @@ get_meson () {
 
   pip3 install --user meson
   if [ "$?" == 0 ]; then
-    echo -e '  export PATH=$HOME/.local/bin:$PATH' >> $HOME/.bash_aliases
-    source $HOME/.bash_aliases
+    if ! echo $PATH | grep -q $HOME/.local/bin; then
+      echo -e '  export PATH=$HOME/.local/bin:$PATH' >> $HOME/.bash_aliases
+      source $HOME/.bash_aliases
+    fi
   else
     printf "\n$BDR%s %s\n" "OOPS! SOMETHING WENT WRONG."
     printf "$BDR%s $OFF%s\n\n" "SCRIPT ABORTED."
