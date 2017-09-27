@@ -561,8 +561,8 @@ uninstall_e22 () {
     fi
   done
 
-sudo updatedb
-echo; cowsay -d "That's All Folks!"; echo
+  sudo updatedb
+  echo; cowsay -d "That's All Folks!"; echo
 }
 
 main () {
