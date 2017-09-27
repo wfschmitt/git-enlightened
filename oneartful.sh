@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ** WORK IN PROGRESS – STUB – DO NOT USE THIS SCRIPT!! **
+# ** WORK IN PROGRESS – YOU USE THIS SCRIPT AT YOUR OWN RISK! **
 
 # ONEARTFUL.SH
 # ------------
@@ -198,7 +198,15 @@ build_def () {
     $WTITLE "Processing ${I^} . . ."
     cd $E22/$I
     printf "\n$BLD%s $OFF%s\n\n" "Building $I..."
-    $GEN; make
+    case $I in
+      efl)
+      $GEN --enable-harfbuzz --enable-image-loader-webp
+      ;;
+      *)
+      $GEN
+      ;;
+    esac
+    make
     if [ $? -ne 0 ]; then
       printf "\n$BDR%s $OFF%s\n\n" "BUILD ERROR——TRY AGAIN LATER."
       rm -rf $E22/$I
@@ -231,7 +239,15 @@ rebuild_def () {
     make distclean &>/dev/null
     git reset --hard &>/dev/null
     git pull
-    $GEN; make
+    case $I in
+      efl)
+      $GEN --enable-harfbuzz --enable-image-loader-webp
+      ;;
+      *)
+      $GEN
+      ;;
+    esac
+    make
     if [ $? -ne 0 ]; then
       printf "\n$BDR%s $OFF%s\n\n" "BUILD ERROR——TRY AGAIN LATER."
       exit 1
