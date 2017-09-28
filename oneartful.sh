@@ -340,7 +340,7 @@ do_bsh_alias () {
   # (Comment out the following line if you get build errors with other projects)
   export MAKE="make -j$(($(getconf _NPROCESSORS_ONLN)*2))"
 
-  # Set the PATH environment variable if necessary.
+  # Set the PATH environment variable (if necessary).
 `EOF`
 
   source $HOME/.bash_aliases
