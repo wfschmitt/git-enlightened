@@ -75,7 +75,7 @@ DEPS_EN="aspell-$CODE manpages imagemagick xserver-xephyr \
 manpages-dev automake autopoint build-essential ccache \
 check cowsay doxygen faenza-icon-theme git \
 libasound2-dev libblkid-dev libbluetooth-dev libbullet-dev \
-libcogl-dev libexif-dev libfontconfig1-dev libfreetype6-dev \
+libcogl-gles2-dev libexif-dev libfontconfig1-dev libfreetype6-dev \
 libfribidi-dev libgif-dev libgstreamer1.0-dev \
 libgstreamer-plugins-base1.0-dev libharfbuzz-dev libibus-1.0-dev \
 libiconv-hook-dev libjpeg-dev libblkid-dev libluajit-5.1-dev \
@@ -95,7 +95,7 @@ DEPS="aspell-$CODE manpages.$CODE imagemagick xserver-xephyr \
 manpages-dev manpages-$CODE-dev manpages-$CODE-extra automake \
 autopoint build-essential ccache check cowsay doxygen \
 faenza-icon-theme git libasound2-dev libblkid-dev \
-libbluetooth-dev libbullet-dev libcogl-dev libexif-dev \
+libbluetooth-dev libbullet-dev libcogl-gles2-dev libexif-dev \
 libfontconfig1-dev libfreetype6-dev libfribidi-dev libgif-dev \
 libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
 libharfbuzz-dev libibus-1.0-dev libiconv-hook-dev libjpeg-dev \
