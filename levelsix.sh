@@ -73,9 +73,9 @@ xcb-util-keysyms-devel xine-lib-devel xorg-x11-server-Xephyr"
 #~ sudo dnf install fedora-repos-rawhide
 #~ sudo dnf --enablerepo=rawhide --nogpgcheck upgrade wayland-devel wayland-protocols-devel
 
-CLONEFL="git clone git://git.enlightenment.org/core/efl.git"
-CLONE22="git clone git://git.enlightenment.org/core/enlightenment.git"
-CLONETY="git clone git://git.enlightenment.org/apps/terminology.git"
+CLONEFL="git clone https://git.enlightenment.org/core/efl.git"
+CLONE22="git clone https://git.enlightenment.org/core/enlightenment.git"
+CLONETY="git clone https://git.enlightenment.org/apps/terminology.git"
 EPROGRM="efl enlightenment terminology"
 
 if [ $RELEASE == 26 ]; then
