@@ -64,7 +64,7 @@ DISTRIBUTOR=$(lsb_release -i | cut -f2)
 CODE=${LANG:0:2}
 GHUB="https://raw.githubusercontent.com/batden/git-enlightened/master"
 VER_ONLINE=$(wget --quiet -S -O - $GHUB/14 |& sed '$!d')
-CURVERNUM="0.8"
+CURVERNUM="0.9"
 
 # Folder names lookup.
 DOCUDIR=$(test -f ${XDG_CONFIG_HOME:-~/.config}/user-dirs.dirs && \
@@ -127,10 +127,7 @@ sel_menu () {
     printf "\n$BDG%s %s\n\n" "1. Install Enlightenment 22."
     printf "$BDG%s $OFF%s\n\n" "2. Update my E22 installation."
     printf "$BRN%s %s\n\n" "3. Uninstall E22 programs."
-    printf "$BRN%s $OFF%s\n\n" "4. Uninstall E22 programs AND binary dependencies."
-    printf "$BDY%s %s\n" "5. Update and rebuild E22 for debugging"
-    printf "$BDY%s %s\n\n" "   (Make sure default E theme is applied)."
-    printf "$BDY%s $OFF%s\n\n" "6. Update and rebuild E22 with optimizations enabled"
+    printf "$BRN%s $OFF%s\n\n" "4. Remove binary dependencies."
 
     sleep 1 && printf "$BLD%s $OFF%s\n\n" "—  Or press Ctrl-C to quit."
     read INPUT
@@ -453,7 +450,43 @@ remov_eprog_mn () {
     sudo ninja -C build uninstall &>/dev/null
     rm -rf build &>/dev/null
   done
-  }
+}
+
+uninstall_main_deps () {
+  clear; echo; read -t 3 -p "Wait 3s or hit Ctrl-C to abort..."
+
+  $WTITLE "Processing Ubuntu Packages . . ."
+  echo; printf "\n$BRN%s $OFF%s\n\n" "* Removing binary dependencies... *"
+
+  #~ (Think twice before proceeding with the removal of these packages!
+  #~  If you're in doubt, take a screenshot first for future reference)
+  if [ $CODE == en ]; then
+    sudo apt-get autoremove $TRIM_EN
+    sleep 1
+  else
+    sudo apt-get autoremove $TRIM
+    sleep 1
+  fi
+
+  sudo dpkg --set-selections < $DOCUDIR/installed.txt
+  sudo apt-get dselect-upgrade
+  sudo apt-get update
+  sudo apt-get dist-upgrade
+
+  cd $HOME; echo
+  rm $DOCUDIR/installed.txt &>/dev/null
+
+  sudo apt-get autoremove --purge
+  sudo dpkg --purge $(COLUMNS=200 dpkg -l | grep "^rc" | tr -s ' ' | \
+  cut -d ' ' -f 2) &>/dev/null
+
+  if [ $RELEASE == artful ]; then
+    sudo apt-get autoremove --yes libopenjp2-7-dev &>/dev/null
+  fi
+
+  printf "\n%s\n\n" "[Output of ubuntu-support-status]"
+  ubuntu-support-status; echo
+}
 
 uninstall_e22 () {
   clear; echo; read -t 3 -p "Wait 3s or hit Ctrl-C to abort..."
@@ -474,7 +507,12 @@ uninstall_e22 () {
   rm -rf .e/
   rm -rf .elementary/
   rm -rf .cache/efreet/
+  rm -rf .cache/ephoto/
   rm -rf .cache/evas_gl_common_caches/
+  rm -rf .cache/rage/
+  rm -rf .config/ephoto/
+  rm -rf .config/rage/
+  rm -rf .config/terminology/
 
   cd /usr/local/etc/
   sudo rm -rf enlightenment/
@@ -571,6 +609,41 @@ uninstall_e22 () {
     fi
   done
 
+  if [ -d $HOME/.ccache/ ]; then
+    read -t 10 -p "Remove the hidden ccache folder (compiler cache)? [y/N] " answer
+    case $answer in
+      [yY] )
+      rm -rf $HOME/.ccache/
+      ;;
+      [nN] )
+      printf "\n%s\n\n" "(Do not delete the ccache folder... OK)"
+      ;;
+      *    )
+      echo; printf "\n%s\n\n" "(Do not delete the ccache folder... OK)"
+      ;;
+    esac
+  fi
+
+  if [ -f $HOME/.bash_aliases ]; then
+    read -t 10 -p "Remove the hidden bash_aliases file? [y/N] " answer
+    case $answer in
+      [yY] )
+      rm -rf $HOME/.bash_aliases
+      source $HOME/.bashrc
+      ;;
+      [nN] )
+      printf "\n%s\n\n" "(Do not delete bash_aliases... OK)"
+      ;;
+      *    )
+      echo; printf "\n%s\n\n" "(Do not delete bash_aliases... OK)"
+      ;;
+    esac
+  fi
+
+  if [ -d $HOME/git-enlightened/ ]; then
+    rm -rf $HOME/git-enlightened/
+  fi
+
   sudo updatedb
   echo; cowsay -d "That's All Folks!"; echo
 }
@@ -595,15 +668,10 @@ main () {
   elif [ $INPUT == 3 ]; then
     uninstall_e22
   elif [ $INPUT == 4 ]; then
-    uninstall_all
-  elif [ $INPUT == 5 ]; then
-    go_debug
-  elif [ $INPUT == 6 ]; then
-    optim_go
+    uninstall_main_deps
   else
     exit 1
   fi
 }
 
 main
-
