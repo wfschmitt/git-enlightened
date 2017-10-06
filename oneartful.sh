@@ -411,9 +411,9 @@ install_go () {
   printf "\n$BDY%s $OFF%s\n\n\n" "Network management support——Do not install Connman!"
 
   if [ $RELEASE == artful ]; then
-   echo; cowsay "Now reboot your computer then select Enlightenment on the login screen... That's All Folks!"; echo
+    echo; cowsay "Now reboot your computer then select Enlightenment on the login screen... That's All Folks!"; echo
   else
-   echo; cowsay "No Reboot Required... That's All Folks!"; echo
+    echo; cowsay "No Reboot Required... That's All Folks!"; echo
   fi
 }
 
