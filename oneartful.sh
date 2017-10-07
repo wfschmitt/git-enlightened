@@ -21,7 +21,7 @@
 # WARNING:
 # Enlightenment programs installed from .deb packages (or tarballs) will
 # inevitably conflict with E22 programs compiled from GIT source code,
-# do not mix source code with precompiled binaries!
+# do not mix source code with pre-built binaries!
 # Please remove thoroughly any previous installation of EFL/Enlightenment
 # (track down and delete any leftover files) before running my script.
 
@@ -408,7 +408,7 @@ install_go () {
   $WTITLE "Installation Complete."
   printf "\n\n$BDY%s %s" "Enlightenment first time wizard tips:"
   printf "\n$BDY%s %s" "Update checking——You can disable this feature because it serves no useful purpose."
-  printf "\n$BDY%s $OFF%s\n\n\n" "Network management support——Do not install Connman!"
+  printf "\n$BDY%s $OFF%s\n\n\n" "Network management support——Do NOT install Connman!"
 
   if [ $RELEASE == artful ]; then
     echo; cowsay "Now reboot your computer then select Enlightenment on the login screen... That's All Folks!"; echo
