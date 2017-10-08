@@ -346,7 +346,7 @@ get_meson () {
     sudo apt-get install ninja-build python3-pip
   fi
 
-  pip3 install --user meson
+  pip3 -q install --user meson
   if [ "$?" == 0 ]; then
     if ! echo $PATH | grep -q $HOME/.local/bin; then
       echo -e '  export PATH=$HOME/.local/bin:$PATH' >> $HOME/.bash_aliases
