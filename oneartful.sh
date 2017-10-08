@@ -644,7 +644,7 @@ main () {
   trap '{ printf "\n$BDR%s $OFF%s\n\n" "KEYBOARD INTERRUPT."; exit 130; }' INT
 
   printf "\n%s\n" "$VER_ONLINE"
-  printf "%s\n" "[You are currently using v$CURVERNUM]"
+  printf "%s\n" "[You are currently using oneartful v$CURVERNUM]"
   sleep 3
 
   do_tests
