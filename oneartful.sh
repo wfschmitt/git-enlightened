@@ -353,7 +353,7 @@ get_meson () {
       source $HOME/.bash_aliases
     fi
   else
-    printf "\n$BDR%s %s\n" "OOPS! SOMETHING WENT WRONG."
+    printf "\n$BDR%s %s\n" "[pip error] SOMETHING WENT WRONG!"
     printf "$BDR%s $OFF%s\n\n" "SCRIPT ABORTED."
     exit 1
   fi
