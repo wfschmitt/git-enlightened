@@ -429,6 +429,9 @@ update_go () {
   $WTITLE "Processing Enlightenment Programs . . ."
   rebuild_def
 
+  sudo ln -sf /usr/local/share/xsessions/enlightenment.desktop \
+  /usr/share/xsessions/enlightenment.desktop
+
   sudo updatedb
   $WTITLE "Update Complete."
   echo; cowsay -f www "That's All Folks!"; echo
