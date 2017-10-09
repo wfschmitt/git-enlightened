@@ -429,6 +429,10 @@ update_go () {
   $WTITLE "Processing Enlightenment Programs . . ."
   rebuild_def
 
+  sudo ln -sf \
+  /usr/local/share/dbus-1/services/org.enlightenment.Ethumb.service \
+  /usr/share/dbus-1/services/org.enlightenment.Ethumb.service
+
   sudo ln -sf /usr/local/share/xsessions/enlightenment.desktop \
   /usr/share/xsessions/enlightenment.desktop
 
