@@ -524,6 +524,7 @@ uninstall_e22 () {
   sudo rm -rf ethumb*
   sudo rm -rf evas*
   sudo rm -rf x86*
+  sudo rm -rf i386*
 
   cd /usr/local/lib/cmake/
   sudo rm -rf Ecore*
