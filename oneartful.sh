@@ -343,7 +343,7 @@ do_bsh_alias () {
 get_meson () {
   which meson &>/dev/null
   if [ "$?" -ne 0 ]; then
-    sudo apt-get install ninja-build python3-pip
+    sudo apt-get install --yes ninja-build python3-pip
   fi
 
   pip3 -q install --user meson
@@ -471,8 +471,8 @@ uninstall_main_deps () {
     sleep 1
   fi
 
-  sudo dpkg --set-selections < $DOCUDIR/installed.txt
   sudo apt-get dselect-upgrade
+  sudo dpkg --set-selections < $DOCUDIR/installed.txt
   sudo apt-get update
   sudo apt-get dist-upgrade
 
