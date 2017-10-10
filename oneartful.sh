@@ -207,7 +207,7 @@ build_def () {
     make
     if [ $? -ne 0 ]; then
       printf "\n$BDR%s $OFF%s\n\n" "BUILD ERROR——TRY AGAIN LATER."
-      rm -rf $E22/$I
+      #rm -rf $E22/$I
       exit 1
     fi
     $SMIL
@@ -222,7 +222,7 @@ build_def () {
     ninja -C build
     if [ $? -ne 0 ]; then
       printf "\n$BDR%s $OFF%s\n\n" "BUILD ERROR——TRY AGAIN LATER."
-      rm -rf $E22/$I
+      #rm -rf $E22/$I
       exit 1
     fi
     sudo ninja -C build install
